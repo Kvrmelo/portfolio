@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karmelo | Official Actor & Creator Hub</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://apis.google.com/js/platform.js"></script>
-</head>
-<body class="glitch-effect">
-
-    <div id="particles-js"></div>
-    <div id="cursor-glow"></div>
-
-    <div class="progress-container">
-        <div class="progress-bar" id="myBar"></div>
-    </div>
-
-    <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-    <nav id="side-menu">
-        <div class="close-btn" onclick="toggleMenu()">×</div>
-        <div class="menu-items">
-            <a href="#home" onclick="toggleMenu()">Start</a>
-            <a href="#about" onclick="toggleMenu()">O mnie</a>
-            <a href="#experience" onclick="toggleMenu()">Doświadczenie</a>
-            <a href="#shorts" onclick="toggleMenu()">Shortsy</a>
-            <a href="#contact" onclick="toggleMenu()">Współpraca</a>
-        </div>
-    </nav>
-
-    <header class="container" id="home">
+<header class="container" id="home">
         <div class="avatar-wrapper">
              <img src="profil.jpg" alt="Karmelo" class="profile-img">
              <div class="online-pulse"></div>
@@ -38,16 +7,24 @@
         <h1 class="main-title">Siema, tu <span class="nickname">Karmelo</span></h1>
         <p class="tagline">Aktor • Content Creator • Montażysta</p>
         
-        <div class="hero-stats" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-            <div class="h-stat" style="display: flex; flex-direction: column; align-items: center;">
-                <div class="g-ytsubscribe" data-channelid="UC8CunW495mG_z4X6YjPj77g" data-layout="default" data-theme="dark" data-count="default"></div>
+        <div class="hero-stats" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 25px; margin-bottom: 25px;">
+            
+            <div class="h-stat" style="display: flex; flex-direction: column; align-items: center; min-width: 150px;">
+                <div class="g-ytsubscribe" 
+                     data-channelid="UCX8ZDEL_lCJYIgd9AqtubHQ" 
+                     data-layout="default" 
+                     data-theme="dark" 
+                     data-count="default">
+                </div>
             </div>
+
             <div class="h-stat" style="display: flex; flex-direction: column; align-items: center;">
                 <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fkvrmelo.github.io%2Fportfolio&count_bg=%23FF0000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=WIDZÓW&edge_flat=false" alt="Licznik" style="height: 25px;">
             </div>
-            <div class="h-stat" style="text-align: center;">
-                <strong style="display: block; font-size: 1.2em;">PRO</strong>
-                <span style="font-size: 0.8em; opacity: 0.8; color: #ff0000;">MONTAŻ</span>
+
+            <div class="h-stat" style="text-align: center; min-width: 100px;">
+                <strong style="display: block; font-size: 1.2em; color: #fff; text-transform: uppercase;">PRO</strong>
+                <span style="font-size: 0.8em; letter-spacing: 1px; color: #ff0000; font-weight: bold;">MONTAŻ</span>
             </div>
         </div>
 
@@ -58,7 +35,6 @@
             <a href="https://twitch.tv/kvrmelo" class="card tw" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
         </div>
     </header>
-
     <section class="section" id="about">
         <h2 class="section-title">O mnie</h2>
         <div class="about-container">
@@ -251,3 +227,4 @@
     </script>
 </body>
 </html>
+
