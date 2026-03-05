@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karmelo | Official Actor & Creator Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="glitch-effect">
+
+    <div id="particles-js"></div>
+    <div id="cursor-glow"></div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <nav id="side-menu">
+        <div class="close-btn" onclick="toggleMenu()">×</div>
+        <div class="menu-items">
+            <a href="#home" onclick="toggleMenu()">Start</a>
+            <a href="#about" onclick="toggleMenu()">O mnie</a>
+            <a href="#experience" onclick="toggleMenu()">Doświadczenie</a>
+            <a href="#shorts" onclick="toggleMenu()">Shortsy</a>
+            <a href="#contact" onclick="toggleMenu()">Współpraca</a>
+        </div>
+    </nav>
+
+    <header class="container" id="home">
+        <div class="avatar-wrapper">
+             <img src="profil.jpg" alt="Karmelo" class="profile-img">
+             <div class="online-pulse"></div>
+        </div>
+        
+        <h1 class="main-title">Siema, tu <span class="nickname">Karmelo</span></h1>
+        <p class="tagline">Aktor • Content Creator • Pianista</p>
+        
+        <div class="hero-stats">
+            <div class="h-stat"><strong>2025</strong><span>Global Ad</span></div>
+            <div class="h-stat"><strong>100%</strong><span>Pasji</span></div>
+            <div class="h-stat"><strong>PRO</strong><span>Montaż</span></div>
+        </div>
+
+        <div class="links-grid">
+            <a href="https://youtube.com/@kvrmelo" class="card yt" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://tiktok.com/@kvrmelo" class="card tt" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://instagram.com/kvrmelo" class="card ig" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://twitch.tv/kvrmelo" class="card tw" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
+        </div>
+    </header>
+
+    <section class="section" id="about">
+        <h2 class="section-title">O mnie</h2>
+        <div class="about-container">
+            <div class="about-content">
+                <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. Z powodzeniem łączę warsztat aktorski z obyciem medialnym i technicznymi umiejętnościami montażu.</p>
+                <p>Moje doświadczenie to nie tylko YouTube (@kvrmelo), ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025). W wolnych chwilach gram na pianinie – ukończyłem szkołę muzyczną z wyróżnieniem.</p>
+                <div class="skill-tags">
+                    <span>#Aktorstwo</span> <span>#MontażWideo</span> <span>#Pianino</span> <span>#ContentCreation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="experience">
+        <h2 class="section-title">Doświadczenie</h2>
+        <div class="portfolio-grid">
+            <div class="p-item text-center">
+                <i class="fas fa-ad p-icon"></i>
+                <h3>Sodastream</h3>
+                <p>Globalna reklama (2025)</p>
+            </div>
+            <div class="p-item text-center">
+                <i class="fas fa-tv p-icon"></i>
+                <h3>Tatuśkowie</h3>
+                <p>Serial Polsat (odc. 50)</p>
+            </div>
+            <div class="p-item text-center">
+                <i class="fas fa-theater-masks p-icon"></i>
+                <h3>Teatr Roma</h3>
+                <p>Spektakl musicalowy</p>
+            </div>
+            <div class="p-item text-center">
+                <i class="fas fa-award p-icon"></i>
+                <h3>Nagroda</h3>
+                <p>1. miejsce - Stand-up</p>
+            </div>
+        </div>
+    </section>
+
+<section class="section" id="shorts">
+    <h2 class="section-title">Moje Shortsy</h2>
+    <div class="video-main" style="max-width: 315px; margin: 0 auto; border-radius: 30px; overflow: hidden; aspect-ratio: 9/16; box-shadow: 0 0 30px rgba(255,0,0,0.3); border: 2px solid rgba(255,0,0,0.2); position: relative;">
+        <iframe 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            src="https://www.youtube.com/embed/XQrDdlafN00?origin=http://127.0.0.1:5500" 
+            title="Karmelo Shorts" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+    <section class="section" id="contact">
+        <h2 class="section-title">Współpraca</h2>
+        <div class="contact-wrapper">
+            <div class="contact-card-premium">
+                <div class="contact-info">
+                    <h3>Masz projekt w głowie?</h3>
+                    <p>Napisz bezpośrednio tutaj – stwórzmy coś razem.</p>
+                </div>
+                <div class="contact-actions">
+                    <button class="mail-btn-neon" onclick="openContactForm()">
+                        <i class="fas fa-paper-plane"></i> Napisz wiadomość
+                    </button>
+                    <div class="discord-box-premium" onclick="copyDiscord()">
+                        <div class="dc-icon"><i class="fab fa-discord"></i></div>
+                        <div class="dc-details">
+                            <span class="dc-label">Discord</span>
+                            <span class="dc-username" id="dc-text">kvrmelo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeContactForm()">&times;</span>
+                <h3 style="margin-bottom: 20px;">Wyślij wiadomość</h3>
+                <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
+                    <div class="input-group">
+                        <input type="text" name="name" placeholder="Twój Nick / Imię" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" name="email" placeholder="Twój E-mail" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="subject" placeholder="Temat">
+                    </div>
+                    <div class="input-group">
+                        <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Wyślij</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 1. PASEK POSTĘPU
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            const bar = document.getElementById("myBar");
+            if(bar) bar.style.width = scrolled + "%";
+        };
+
+        // 2. MENU BOCZNE
+        function toggleMenu() { 
+            document.getElementById('side-menu').classList.toggle('active'); 
+        }
+
+        // 3. KOPIOWANIE DISCORDA
+        function copyDiscord() {
+            navigator.clipboard.writeText("kvrmelo");
+            const txt = document.getElementById("dc-text");
+            txt.innerHTML = "Skopiowano!";
+            setTimeout(() => { txt.innerHTML = "kvrmelo"; }, 2000);
+        }
+
+        // 4. OBSŁUGA MODALA
+        function openContactForm() {
+            document.getElementById("contact-modal").style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeContactForm() {
+            document.getElementById("contact-modal").style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById("contact-modal");
+            if (event.target == modal) closeContactForm();
+        };
+
+        // 5. OBSŁUGA FORMSPREE (AJAX)
+        const form = document.getElementById("contact-form");
+        if (form) {
+            form.onsubmit = async function(e) {
+                e.preventDefault();
+                const btn = form.querySelector(".submit-btn");
+                btn.innerHTML = "Wysyłanie...";
+                btn.disabled = true;
+
+                const data = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    btn.innerHTML = "Wysłano! ✅";
+                    btn.style.background = "#00ff00";
+                    setTimeout(() => {
+                        closeContactForm();
+                        form.reset();
+                        btn.innerHTML = "Wyślij";
+                        btn.style.background = "";
+                        btn.disabled = false;
+                    }, 2000);
+                } else {
+                    btn.innerHTML = "Błąd wysyłania";
+                    btn.disabled = false;
+                }
+            };
+        }
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+    // 1. INICJACJA PARTICLES (Zabezpieczona)
+    window.onload = function() {
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#ff0000" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.5, "random": false },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#ff0000", "opacity": 0.4, "width": 1 },
+                    "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } }
+                },
+                "retina_detect": true
+            });
+            console.log("Particlesy załadowane!");
+        }
+    };
+
+    // 2. FUNKCJE MENU I MODALA
+    function toggleMenu() { document.getElementById('side-menu').classList.toggle('active'); }
+    function openContactForm() { document.getElementById("contact-modal").style.display = "block"; document.body.style.overflow = "hidden"; }
+    function closeContactForm() { document.getElementById("contact-modal").style.display = "none"; document.body.style.overflow = "auto"; }
+    
+    function copyDiscord() {
+        navigator.clipboard.writeText("kvrmelo");
+        const txt = document.getElementById("dc-text");
+        txt.innerHTML = "Skopiowano!";
+        setTimeout(() => { txt.innerHTML = "kvrmelo"; }, 2000);
+    }
+
+    // Zamykanie modala klikiem poza okno
+    window.onclick = function(event) {
+        let modal = document.getElementById("contact-modal");
+        if (event.target == modal) closeContactForm();
+    };
+
+    // 3. OBSŁUGA FORMSPREE
+    const form = document.getElementById("contact-form");
+    if (form) {
+        form.onsubmit = async function(e) {
+            e.preventDefault();
+            const btn = form.querySelector(".submit-btn");
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "Wysyłanie...";
+            btn.disabled = true;
+
+            const data = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    btn.innerHTML = "Wysłano! ✅";
+                    btn.style.background = "#00ff00";
+                    setTimeout(() => {
+                        closeContactForm();
+                        form.reset();
+                        btn.innerHTML = originalText;
+                        btn.style.background = "";
+                        btn.disabled = false;
+                    }, 2000);
+                } else { throw new Error(); }
+            } catch (err) {
+                btn.innerHTML = "Błąd! Spróbuj rano.";
+                btn.disabled = false;
+            }
+        };
+    }
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+    // 1. INICJACJA PARTICLES (Zabezpieczona)
+    window.onload = function() {
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#ff0000" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.5, "random": false },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#ff0000", "opacity": 0.4, "width": 1 },
+                    "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } }
+                },
+                "retina_detect": true
+            });
+            console.log("Particlesy załadowane!");
+        }
+    };
+
+    // 2. FUNKCJE MENU I MODALA
+    function toggleMenu() { document.getElementById('side-menu').classList.toggle('active'); }
+    function openContactForm() { document.getElementById("contact-modal").style.display = "block"; document.body.style.overflow = "hidden"; }
+    function closeContactForm() { document.getElementById("contact-modal").style.display = "none"; document.body.style.overflow = "auto"; }
+    
+    function copyDiscord() {
+        navigator.clipboard.writeText("kvrmelo");
+        const txt = document.getElementById("dc-text");
+        txt.innerHTML = "Skopiowano!";
+        setTimeout(() => { txt.innerHTML = "kvrmelo"; }, 2000);
+    }
+
+    // Zamykanie modala klikiem poza okno
+    window.onclick = function(event) {
+        let modal = document.getElementById("contact-modal");
+        if (event.target == modal) closeContactForm();
+    };
+
+    // 3. OBSŁUGA FORMSPREE
+    const form = document.getElementById("contact-form");
+    if (form) {
+        form.onsubmit = async function(e) {
+            e.preventDefault();
+            const btn = form.querySelector(".submit-btn");
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "Wysyłanie...";
+            btn.disabled = true;
+
+            const data = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    btn.innerHTML = "Wysłano! ✅";
+                    btn.style.background = "#00ff00";
+                    setTimeout(() => {
+                        closeContactForm();
+                        form.reset();
+                        btn.innerHTML = originalText;
+                        btn.style.background = "";
+                        btn.disabled = false;
+                    }, 2000);
+                } else { throw new Error(); }
+            } catch (err) {
+                btn.innerHTML = "Błąd! Spróbuj rano.";
+                btn.disabled = false;
+            }
+        };
+    }
+
+</script>
+</body>
+</html>
