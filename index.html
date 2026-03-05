@@ -10,7 +10,7 @@
 </head>
 <body class="glitch-effect">
 
-    <div id="particles-js"></div>
+    <div id="particles-js" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; pointer-events: none;"></div>
     <div id="cursor-glow"></div>
 
     <div class="progress-container">
@@ -38,21 +38,21 @@
         <h1 class="main-title">Siema, tu <span class="nickname">Karmelo</span></h1>
         <p class="tagline">Aktor • Content Creator • Montażysta</p>
         
-     <div class="hero-stats" style="display: flex; justify-content: center; align-items: center; gap: 25px; flex-wrap: wrap; margin: 30px 0;">
-    
-    <div class="h-stat">
-        <div class="g-ytsubscribe" data-channelid="UCX8ZDEL_lCJYIgd9AqtubHQ" data-layout="default" data-theme="dark" data-count="default"></div>
-    </div>
+        <div class="hero-stats">
+            <div class="h-stat">
+                <div class="g-ytsubscribe" data-channelid="UCX8ZDEL_lCJYIgd9AqtubHQ" data-layout="default" data-theme="dark" data-count="default"></div>
+            </div>
 
-    <div class="h-stat">
-        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fkvrmelo.github.io%2Fportfolio&count_bg=%23FF0000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=WIDZOW&edge_flat=false" alt="Licznik">
-    </div>
+            <div class="h-stat">
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fkvrmelo.github.io%2Fportfolio&count_bg=%23FF0000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=WIDZOW&edge_flat=false" alt="Licznik">
+            </div>
 
-    <div class="h-stat" style="text-align: center;">
-        <strong style="display: block; font-size: 1.2rem; color: white;">PRO</strong>
-        <span style="color: #ff0000; font-weight: bold; font-size: 0.9rem;">MONTAŻ</span>
-    </div>
-</div>
+            <div class="h-stat" style="text-align: center;">
+                <strong style="display: block; font-size: 1.2rem; color: white;">PRO</strong>
+                <span style="color: #ff0000; font-weight: bold; font-size: 0.9rem;">MONTAŻ</span>
+            </div>
+        </div>
+
         <div class="links-grid">
             <a href="https://youtube.com/@kvrmelo" class="card yt" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
             <a href="https://tiktok.com/@kvrmelo" class="card tt" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
@@ -66,7 +66,7 @@
         <div class="about-container">
             <div class="about-content">
                 <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. Z powodzeniem łączę warsztat aktorski z obyciem medialnym i technicznymi umiejętnościami montażu.</p>
-                <p>Moje doświadczenie to nie tylko YouTube (@kvrmelo), ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025). W wolnych chwilach gram w gierki jak np. Minecraft i nagrywam/robie live na swoje kanały.</p>
+                <p>Moje doświadczenie to nie tylko YouTube (@kvrmelo), ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025). W wolnych chwilach gram w Minecraft i prowadzę transmisje live.</p>
                 <div class="skill-tags">
                     <span>#Aktorstwo</span> <span>#MontażWideo</span> <span>#Pianino</span> <span>#ContentCreation</span>
                 </div>
@@ -77,40 +77,40 @@
     <section class="section" id="experience">
         <h2 class="section-title">Doświadczenie</h2>
         <div class="portfolio-grid">
-            <div class="p-item text-center">
+            <div class="p-item">
                 <i class="fas fa-ad p-icon"></i>
                 <h3>Sodastream</h3>
                 <p>Globalna reklama (2025)</p>
             </div>
-            <div class="p-item text-center">
+            <div class="p-item">
                 <i class="fas fa-tv p-icon"></i>
                 <h3>Tatuśkowie</h3>
                 <p>Serial Polsat (odc. 50)</p>
             </div>
-            <div class="p-item text-center">
+            <div class="p-item">
                 <i class="fas fa-theater-masks p-icon"></i>
                 <h3>Teatr Roma</h3>
                 <p>Spektakl musicalowy</p>
             </div>
-            <div class="p-item text-center">
+            <div class="p-item">
                 <i class="fas fa-award p-icon"></i>
                 <h3>Zawodowy montaż</h3>
-                <p>Montaż dla dużych firm</p>
+                <p>Współpraca z markami</p>
             </div>
         </div>
     </section>
 
     <section class="section" id="shorts">
         <h2 class="section-title">Moje Shortsy</h2>
-        <div class="shorts-grid" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px;">
-            <div class="video-container" style="max-width: 315px; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; border: 2px solid rgba(255,0,0,0.2);">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/XQrDdlafN00?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
+        <div class="shorts-grid">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="video-container" style="max-width: 315px; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; border: 2px solid rgba(255,0,0,0.2);">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/DZ8vyfdgACc?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/DZ8vyfdgACc" frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="video-container" style="max-width: 315px; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; border: 2px solid rgba(255,0,0,0.2);">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0xJZrCEK_xY?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/0xJZrCEK_xY" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -141,16 +141,13 @@
         <div id="contact-modal" class="modal">
             <div class="modal-content">
                 <span class="close-modal" onclick="closeContactForm()">&times;</span>
-                <h3 style="margin-bottom: 20px;">Wyślij wiadomość</h3>
+                <h3>Wyślij wiadomość</h3>
                 <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
                     <div class="input-group">
                         <input type="text" name="name" placeholder="Twój Nick / Imię" required>
                     </div>
                     <div class="input-group">
                         <input type="email" name="email" placeholder="Twój E-mail" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="subject" placeholder="Temat">
                     </div>
                     <div class="input-group">
                         <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
@@ -163,7 +160,6 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // 1. INICJACJA PARTICLES
         window.onload = function() {
             if (typeof particlesJS !== 'undefined') {
                 particlesJS("particles-js", {
@@ -171,82 +167,37 @@
                         "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
                         "color": { "value": "#ff0000" },
                         "shape": { "type": "circle" },
-                        "opacity": { "value": 0.5, "random": false },
+                        "opacity": { "value": 0.5 },
                         "size": { "value": 3, "random": true },
                         "line_linked": { "enable": true, "distance": 150, "color": "#ff0000", "opacity": 0.4, "width": 1 },
-                        "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                        "move": { "enable": true, "speed": 3 }
                     },
                     "interactivity": {
-                        "detect_on": "canvas",
-                        "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                        "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } }
+                        "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
                     },
                     "retina_detect": true
                 });
             }
         };
 
-        // 2. PASEK POSTĘPU
         window.onscroll = function() {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             var scrolled = (winScroll / height) * 100;
-            const bar = document.getElementById("myBar");
-            if(bar) bar.style.width = scrolled + "%";
+            document.getElementById("myBar").style.width = scrolled + "%";
         };
 
-        // 3. FUNKCJE MENU I MODALA
         function toggleMenu() { document.getElementById('side-menu').classList.toggle('active'); }
-        function openContactForm() { document.getElementById("contact-modal").style.display = "block"; document.body.style.overflow = "hidden"; }
-        function closeContactForm() { document.getElementById("contact-modal").style.display = "none"; document.body.style.overflow = "auto"; }
-        
+        function openContactForm() { document.getElementById("contact-modal").style.display = "block"; }
+        function closeContactForm() { document.getElementById("contact-modal").style.display = "none"; }
         function copyDiscord() {
             navigator.clipboard.writeText("kvrmelo");
-            const txt = document.getElementById("dc-text");
-            txt.innerHTML = "Skopiowano!";
-            setTimeout(() => { txt.innerHTML = "kvrmelo"; }, 2000);
-        }
-
-        window.onclick = function(event) {
-            let modal = document.getElementById("contact-modal");
-            if (event.target == modal) closeContactForm();
-        };
-
-        // 4. OBSŁUGA FORMSPREE
-        const form = document.getElementById("contact-form");
-        if (form) {
-            form.onsubmit = async function(e) {
-                e.preventDefault();
-                const btn = form.querySelector(".submit-btn");
-                const originalText = btn.innerHTML;
-                btn.innerHTML = "Wysyłanie...";
-                btn.disabled = true;
-
-                const data = new FormData(form);
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: data,
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    if (response.ok) {
-                        btn.innerHTML = "Wysłano! ✅";
-                        btn.style.background = "#00ff00";
-                        setTimeout(() => {
-                            closeContactForm();
-                            form.reset();
-                            btn.innerHTML = originalText;
-                            btn.style.background = "";
-                            btn.disabled = false;
-                        }, 2000);
-                    } else { throw new Error(); }
-                } catch (err) {
-                    btn.innerHTML = "Błąd!";
-                    btn.disabled = false;
-                }
-            };
+            document.getElementById("dc-text").innerHTML = "Skopiowano!";
+            setTimeout(() => { document.getElementById("dc-text").innerHTML = "kvrmelo"; }, 2000);
         }
     </script>
 </body>
 </html>
+
+
 
