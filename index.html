@@ -1,4 +1,35 @@
-<header class="container" id="home">
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karmelo | Official Actor & Creator Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://apis.google.com/js/platform.js"></script>
+</head>
+<body class="glitch-effect">
+
+    <div id="particles-js"></div>
+    <div id="cursor-glow"></div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <nav id="side-menu">
+        <div class="close-btn" onclick="toggleMenu()">×</div>
+        <div class="menu-items">
+            <a href="#home" onclick="toggleMenu()">Start</a>
+            <a href="#about" onclick="toggleMenu()">O mnie</a>
+            <a href="#experience" onclick="toggleMenu()">Doświadczenie</a>
+            <a href="#shorts" onclick="toggleMenu()">Shortsy</a>
+            <a href="#contact" onclick="toggleMenu()">Współpraca</a>
+        </div>
+    </nav>
+
+    <header class="container" id="home">
         <div class="avatar-wrapper">
              <img src="profil.jpg" alt="Karmelo" class="profile-img">
              <div class="online-pulse"></div>
@@ -35,6 +66,7 @@
             <a href="https://twitch.tv/kvrmelo" class="card tw" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
         </div>
     </header>
+
     <section class="section" id="about">
         <h2 class="section-title">O mnie</h2>
         <div class="about-container">
@@ -77,19 +109,15 @@
     <section class="section" id="shorts">
         <h2 class="section-title">Moje Shortsy</h2>
         <div class="shorts-grid" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px;">
-            
             <div class="video-container" style="max-width: 315px; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; border: 2px solid rgba(255,0,0,0.2);">
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/XQrDdlafN00?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
             </div>
-
             <div class="video-container" style="max-width: 315px; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; border: 2px solid rgba(255,0,0,0.2);">
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/DZ8vyfdgACc?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
             </div>
-
             <div class="video-container" style="max-width: 315px; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; border: 2px solid rgba(255,0,0,0.2);">
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0xJZrCEK_xY?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
             </div>
-
         </div>
     </section>
 
@@ -227,4 +255,3 @@
     </script>
 </body>
 </html>
-
