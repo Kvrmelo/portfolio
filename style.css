@@ -324,4 +324,33 @@ body {
     .section-title { font-size: 2.2rem; margin-bottom: 40px; }
     .contact-card-premium { padding: 40px 20px; border-radius: 30px; }
     .modal-content { padding: 40px 25px; }
+
+}
+/* Naprawa statystyk w hero */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.h-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+}
+
+/* Styl dla licznika odwiedzin (obrazka) */
+.h-stat img {
+    height: 25px;
+    margin-bottom: 5px;
+}
+
+/* Naprawa przycisku subskrypcji */
+.h-stat .g-ytsubscribe {
+    transform: scale(0.9); /* Delikatne zmniejszenie, żeby pasowało */
+    margin-bottom: 5px;
 }
