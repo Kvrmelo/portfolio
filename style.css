@@ -1,230 +1,172 @@
-@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap');
 
 :root {
-    --accent: #ff0000;
-    --accent-glow: rgba(255, 0, 0, 0.6);
-    --bg-dark: #020202;
-    --card-bg: rgba(255, 255, 255, 0.02);
-    --border: rgba(255, 255, 255, 0.08);
+    --glow: #ff0000;
+    --bg: #030303;
+    --card: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
 }
 
-/* RESET I TYPOGRAFIA */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
 body {
-    background-color: var(--bg-dark);
-    color: #eeeeee;
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
+    background-color: var(--bg);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
     overflow-x: hidden;
+    line-height: 1.5;
 }
 
-/* TŁO PARTICLES */
+/* Tło Animowane */
 #particles-js {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
     z-index: 1;
     pointer-events: none;
 }
 
-/* --- NAGŁÓWEK (HERO) --- */
-.container {
+/* Efekt Poświaty w tle */
+body::before {
+    content: '';
+    position: fixed;
+    top: -10%; left: -10%;
+    width: 40%; height: 40%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.15) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Sekcje */
+.container, .section {
     position: relative;
     z-index: 10;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.05) 0%, transparent 70%);
+    padding: 80px 20px;
 }
 
+/* Avatar z Efektem "Aura" */
 .avatar-wrapper {
     position: relative;
-    margin-bottom: 2rem;
+    padding: 10px;
 }
 
 .profile-img {
-    width: 180px;
-    height: 180px;
+    width: clamp(140px, 30vw, 180px);
+    height: clamp(140px, 30vw, 180px);
     border-radius: 50%;
-    border: 2px solid var(--accent);
-    padding: 7px;
-    filter: drop-shadow(0 0 15px var(--accent-glow));
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    object-fit: cover;
+    border: 2px solid var(--glow);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+    transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.avatar-wrapper:hover .profile-img {
-    transform: scale(1.1) rotate(5deg);
+.avatar-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--glow);
+    animation: pulse 2s infinite;
 }
 
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.3); opacity: 0; }
+}
+
+/* Tekst i Nickname */
 .main-title {
-    font-family: 'Syncopate', sans-serif;
-    font-size: clamp(2rem, 8vw, 4.5rem);
-    letter-spacing: -2px;
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    font-weight: 900;
     text-transform: uppercase;
-    text-align: center;
+    letter-spacing: -2px;
+    margin-top: 20px;
 }
 
 .nickname {
-    color: var(--accent);
-    text-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(255,0,0,0.2);
+    background: linear-gradient(90deg, #fff, var(--glow), #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
 }
 
 .tagline {
-    font-weight: 300;
-    letter-spacing: 10px;
-    color: #555;
+    font-size: 0.8rem;
+    letter-spacing: 6px;
+    color: #666;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
-/* --- KAFELKI LINKÓW --- */
-.links-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-top: 40px;
-    width: 100%;
-    max-width: 550px;
-}
-
-.card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    padding: 20px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 700;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.card:hover {
-    background: rgba(255, 0, 0, 0.1);
-    border-color: var(--accent);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-}
-
-/* --- SHORTSY (KINO) --- */
-.section {
-    position: relative;
-    z-index: 10;
-    padding: 100px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-title {
-    font-family: 'Syncopate';
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 60px;
-    letter-spacing: 5px;
-    color: #fff;
-}
-
+/* Siatka Shortów (To będzie wyglądać obłędnie) */
 .shorts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .video-container {
     aspect-ratio: 9/16;
-    border-radius: 20px;
+    background: #111;
+    border-radius: 24px;
     overflow: hidden;
     border: 1px solid var(--border);
-    background: #000;
-    transition: 0.4s ease;
+    transition: 0.4s;
+    position: relative;
 }
 
 .video-container:hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 30px var(--accent-glow);
-    transform: scale(1.02);
+    border-color: var(--glow);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255,0,0,0.2);
 }
 
 .video-container iframe { width: 100%; height: 100%; border: none; }
 
-/* --- KONTAKT --- */
-.contact-card-premium {
-    background: linear-gradient(145deg, #0a0a0a, #111);
+/* Przyciski (Glassmorphism) */
+.card {
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
-    padding: 50px;
-    border-radius: 30px;
+    padding: 20px;
+    border-radius: 16px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
     text-align: center;
 }
 
+.card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+}
+
+/* Przycisk Akcji */
 .mail-btn-neon {
-    background: var(--accent);
+    background: var(--glow);
     color: #fff;
-    padding: 18px 40px;
-    border-radius: 50px;
-    border: none;
+    padding: 20px 50px;
+    border-radius: 100px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    border: none;
     cursor: pointer;
-    box-shadow: 0 0 20px var(--accent-glow);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
     transition: 0.3s;
 }
 
 .mail-btn-neon:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 40px var(--accent);
-}
-
-/* --- MENU BOCZNE --- */
-.menu-btn {
-    position: fixed;
-    top: 30px; left: 30px;
-    z-index: 1000;
-    font-size: 24px;
-    color: var(--accent);
-    cursor: pointer;
-}
-
-#side-menu {
-    position: fixed;
-    left: -300px;
-    top: 0;
-    width: 280px;
-    height: 100%;
-    background: rgba(0,0,0,0.98);
-    z-index: 1100;
-    padding: 80px 30px;
-    transition: 0.5s cubic-bezier(0.7, 0, 0.3, 1);
-    border-right: 1px solid var(--accent);
-}
-
-#side-menu.active { left: 0; }
-
-.menu-items a {
-    display: block;
-    color: #888;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-    font-weight: 900;
-    text-transform: uppercase;
-    transition: 0.3s;
-}
-
-.menu-items a:hover {
-    color: var(--accent);
-    padding-left: 10px;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-    .links-grid { grid-template-columns: 1fr; }
-    .main-title { font-size: 2.5rem; }
+    box-shadow: 0 15px 40px var(--glow);
 }
