@@ -2,233 +2,406 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Karmelo | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karmelo | Official Pro Portfolio</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
-    
-    <script src="https://apis.google.com/js/platform.js"></script>
+    <style>
+        :root {
+            --primary: #ff0000;
+            --primary-rgb: 255, 0, 0;
+            --bg-dark: #050505;
+            --bg-card: rgba(15, 15, 15, 0.9);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* Background & Particles */
+        #particles-js {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .main-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 20px 0;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo { font-family: 'Syncopate', sans-serif; color: var(--primary); text-decoration: none; font-size: 1.2rem; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-size: 0.9rem; font-weight: 600; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .avatar-box {
+            position: relative;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        
+        .avatar-box img {
+            width: 180px; height: 180px; border-radius: 50%;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
+        }
+        
+        .hero h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .hero h1 span { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
+        .hero p { color: var(--text-dim); font-size: 1.2rem; letter-spacing: 5px; font-weight: 300; }
+
+        /* Social Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+            width: 100%;
+        }
+        .social-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        .social-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.15);
+        }
+        .social-card i { font-size: 2.5rem; margin-bottom: 15px; }
+
+        /* Section Titles */
+        .section { padding: 100px 0; }
+        .section-header { margin-bottom: 50px; }
+        .section-header h2 { font-family: 'Syncopate', sans-serif; font-size: 1.8rem; border-left: 5px solid var(--primary); padding-left: 20px; }
+
+        /* Glass Box */
+        .glass-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Stats Row */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-item { text-align: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 15px; }
+        .stat-item h3 { color: var(--primary); font-size: 2rem; font-weight: 900; }
+        .stat-item p { color: var(--text-dim); font-size: 0.8rem; text-transform: uppercase; }
+
+        /* Portfolio Grid (Shorts) */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .video-card {
+            aspect-ratio: 9/16;
+            background: #000;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .video-card iframe { width: 100%; height: 100%; border: none; }
+
+        /* Pricing Table */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .price-card.featured { border-color: var(--primary); transform: scale(1.05); }
+        .price-card h4 { font-size: 1.5rem; margin-bottom: 10px; }
+        .price-card .cost { font-size: 2.5rem; font-weight: 900; color: var(--primary); margin-bottom: 20px; }
+        .price-card ul { list-style: none; color: var(--text-dim); margin-bottom: 30px; }
+        .price-card ul li { margin: 10px 0; font-size: 0.9rem; }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            margin-bottom: 10px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s ease; color: var(--text-dim); }
+        .faq-item.active .faq-answer { padding: 0 20px 20px 20px; max-height: 200px; }
+
+        /* Contact Form */
+        .contact-form { display: grid; gap: 20px; }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        input, textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            padding: 18px;
+            border-radius: 12px;
+            color: #fff;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        input:focus, textarea:focus { border-color: var(--primary); background: rgba(255,255,255,0.08); }
+        .submit-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 20px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .input-row { grid-template-columns: 1fr; }
+            .stats-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
 
     <div id="particles-js"></div>
-    <div id="scroll-progress"></div>
 
-    <div class="menu-btn" onclick="toggleMenu()" aria-label="Otwórz menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-
-    <nav id="side-menu">
-        <div class="menu-items">
-            <a href="#home" onclick="toggleMenu()"><i class="fas fa-home"></i> Start</a>
-            <a href="#about" onclick="toggleMenu()"><i class="fas fa-user"></i> O mnie</a>
-            <a href="#experience" onclick="toggleMenu()"><i class="fas fa-briefcase"></i> Doświadczenie</a>
-            <a href="#shorts" onclick="toggleMenu()"><i class="fas fa-video"></i> Shortsy</a>
-            <a href="#contact" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Kontakt</a>
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="logo">KARMELO</a>
+            <div class="nav-links">
+                <a href="#about">O MNIE</a>
+                <a href="#portfolio">PORTFOLIO</a>
+                <a href="#pricing">CENNIK</a>
+                <a href="#contact">KONTAKT</a>
+            </div>
         </div>
     </nav>
 
-    <header class="hero container" id="home">
-        <div class="avatar-container reveal-top">
-             <img src="profil.jpg" alt="Karmelo" class="profile-img">
-             <div class="status-indicator"></div>
-        </div>
+    <div class="main-wrapper">
+        
+        <section class="hero">
+            <div class="avatar-box">
+                <img src="profil.jpg" alt="Karmelo">
+            </div>
+            <h1>SIEMA, TU <span>KARMELO</span></h1>
+            <p>AKTOR • CONTENT CREATOR • MONTORA</p>
+            
+            <div class="social-grid">
+                <a href="https://youtube.com/@kvrmelo" class="social-card" target="_blank">
+                    <i class="fab fa-youtube" style="color: #ff0000;"></i>
+                    <strong>YouTube</strong>
+                    <small>Subskrybuj</small>
+                </a>
+                <a href="https://tiktok.com/@kvrmelo" class="social-card" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                    <strong>TikTok</strong>
+                    <small>Obserwuj</small>
+                </a>
+                <a href="https://instagram.com/kvrmelo" class="social-card" target="_blank">
+                    <i class="fab fa-instagram" style="color: #e1306c;"></i>
+                    <strong>Instagram</strong>
+                    <small>Sprawdź foty</small>
+                </a>
+            </div>
+        </section>
 
-        <div class="hero-text reveal-bottom">
-            <h1 class="main-title">Siema, tu <span class="nickname">KARMELO</span></h1>
-            <p class="tagline">Aktor • Content Creator • Montażysta</p>
-        </div>
+        <section class="section" id="about">
+            <div class="section-header">
+                <h2>O MNIE</h2>
+            </div>
+            <div class="glass-box">
+                <div class="stats-container">
+                    <div class="stat-item"><h3>5+</h3><p>Lat doświadczenia</p></div>
+                    <div class="stat-item"><h3>100k+</h3><p>Zasięgów</p></div>
+                    <div class="stat-item"><h3>50+</h3><p>Projektów</p></div>
+                </div>
+                <p>Nazywam się <strong>Kornel Weroński</strong>. Moja przygoda z mediami zaczęła się od aktorstwa, co pozwala mi czuć się swobodnie przed kamerą, ale to montaż wideo stał się moją pasją techniczną.</p>
+                <br>
+                <p>Współpracowałem z markami takimi jak <strong>Sodastream</strong> oraz występowałem w serialach (Polsat). Tworzę dynamiczny content, który przyciąga uwagę w pierwsze 3 sekundy.</p>
+            </div>
+        </section>
 
-        <div class="stats-row reveal-bottom">
-            <div class="stat-badge">
-                <div class="g-ytsubscribe" data-channelid="UCX8ZDEL_lCJYIgd9AqtubHQ" data-layout="default" data-theme="dark" data-count="default"></div>
+        <section class="section" id="portfolio">
+            <div class="section-header">
+                <h2>OSTATNIE REALIZACJE</h2>
             </div>
-            <div class="stat-badge hits-badge">
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fkvrmelo.github.io%2Fportfolio&count_bg=%23FF0000&title_bg=%23111111&icon=&icon_color=%23E7E7E7&title=WIDZÓW&edge_flat=false" alt="Licznik">
-            </div>
-            <div class="stat-badge pro-tag">
-                <span class="pro-text">PRO</span>
-                <span class="sub-text">MONTAŻ</span>
-            </div>
-        </div>
-
-        <div class="links-grid reveal-bottom">
-            <a href="https://youtube.com/@kvrmelo" class="social-card yt" target="_blank">
-                <i class="fab fa-youtube"></i> <span>YouTube</span>
-            </a>
-            <a href="https://tiktok.com/@kvrmelo" class="social-card tt" target="_blank">
-                <i class="fab fa-tiktok"></i> <span>TikTok</span>
-            </a>
-            <a href="https://instagram.com/kvrmelo" class="social-card ig" target="_blank">
-                <i class="fab fa-instagram"></i> <span>Instagram</span>
-            </a>
-            <a href="https://twitch.tv/kvrmelo" class="social-card tw" target="_blank">
-                <i class="fab fa-twitch"></i> <span>Twitch</span>
-            </a>
-        </div>
-    </header>
-
-    <section class="section container" id="about">
-        <h2 class="section-title reveal-left">O mnie</h2>
-        <div class="glass-box reveal-right">
-            <div class="about-text">
-                <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. Z powodzeniem łączę warsztat aktorski z obyciem medialnym i technicznymi umiejętnościami montażu.</p>
-                <p>Moje doświadczenie to nie tylko YouTube (@kvrmelo), ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025).</p>
-            </div>
-            <div class="skill-tags">
-                <span class="tag">#Aktorstwo</span>
-                <span class="tag">#MontażWideo</span>
-                <span class="tag">#Pianino</span>
-                <span class="tag">#ContentCreation</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="section container" id="experience">
-        <h2 class="section-title reveal-left">Doświadczenie</h2>
-        <div class="grid-layout">
-            <div class="experience-card reveal-bottom">
-                <i class="fas fa-ad"></i>
-                <h3>Sodastream</h3>
-                <p>Globalna reklama (2025)</p>
-            </div>
-            <div class="experience-card reveal-bottom">
-                <i class="fas fa-tv"></i>
-                <h3>Tatuśkowie</h3>
-                <p>Serial Polsat</p>
-            </div>
-            <div class="experience-card reveal-bottom">
-                <i class="fas fa-theater-masks"></i>
-                <h3>Teatr Roma</h3>
-                <p>Spektakl musicalowy</p>
-            </div>
-            <div class="experience-card reveal-bottom">
-                <i class="fas fa-award"></i>
-                <h3>Zawodowy montaż</h3>
-                <p>Dla dużych marek</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section container" id="shorts">
-        <h2 class="section-title reveal-left">Moje Shortsy</h2>
-        <div class="shorts-grid">
-            <div class="video-item reveal-bottom">
-                <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-item reveal-bottom">
-                <iframe src="https://www.youtube.com/embed/DZ8vyfdgACc" frameborder="0" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-item reveal-bottom">
-                <iframe src="https://www.youtube.com/embed/0xJZrCEK_xY" frameborder="0" allowfullscreen loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <section class="section container" id="contact">
-        <h2 class="section-title reveal-left">Współpraca</h2>
-        <div class="contact-card reveal-bottom">
-            <div class="contact-header">
-                <h3>Masz projekt w głowie?</h3>
-                <p>Napisz bezpośrednio tutaj – stwórzmy coś razem.</p>
-            </div>
-            <div class="contact-btns">
-                <button class="btn-neon" onclick="openModal()">
-                    <i class="fas fa-paper-plane"></i> WYŚLIJ WIADOMOŚĆ
-                </button>
-                <div class="discord-tag" onclick="copyDiscord()">
-                    <i class="fab fa-discord"></i>
-                    <span id="dc-text">kvrmelo</span>
+            <div class="portfolio-grid">
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/XQrDdlafN00"></iframe>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/DZ8vyfdgACc"></iframe>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/0xJZrCEK_xY"></iframe>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div id="contact-modal" class="modal-overlay">
-        <div class="modal-window">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
-            <h3>Kontakt</h3>
-            <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
-                <div class="input-group">
-                    <input type="text" name="name" placeholder="Nick / Imię" required>
-                    <input type="email" name="email" placeholder="E-mail" required>
+        <section class="section" id="pricing">
+            <div class="section-header">
+                <h2>CENNIK USŁUG</h2>
+            </div>
+            <div class="price-grid">
+                <div class="price-card">
+                    <h4>Basic Short</h4>
+                    <div class="cost">150 PLN</div>
+                    <ul>
+                        <li>Montaż do 60s</li>
+                        <li>Napisy dynamiczne</li>
+                        <li>1 Poprawka</li>
+                    </ul>
+                </a>
                 </div>
-                <input type="text" name="subject" placeholder="Temat">
-                <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
-                <button type="submit" class="submit-btn">WYŚLIJ <i class="fas fa-chevron-right"></i></button>
-            </form>
-        </div>
+                <div class="price-card featured">
+                    <h4>Pro Content</h4>
+                    <div class="cost">350 PLN</div>
+                    <ul>
+                        <li>Efekty dźwiękowe (SFX)</li>
+                        <li>Korekcja kolorów</li>
+                        <li>Nielimitowane poprawki</li>
+                        <li>Formaty pod 3 platformy</li>
+                    </ul>
+                </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="section-header">
+                <h2>WSPÓŁPRACA</h2>
+            </div>
+            <div class="glass-box">
+                <form class="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
+                    <div class="input-row">
+                        <input type="text" name="name" placeholder="Twoje Imię" required>
+                        <input type="email" name="email" placeholder="Twój E-mail" required>
+                    </div>
+                    <input type="text" name="subject" placeholder="Temat wiadomości">
+                    <textarea name="message" rows="6" placeholder="Opisz swój projekt..." required></textarea>
+                    <button type="submit" class="submit-btn">WYŚLIJ PROPOZYCJĘ</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 KARMELO. Wszelkie prawa zastrzeżone. Design by AI Collaboration.</p>
+        </footer>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Menu Toggle
-        function toggleMenu() {
-            document.getElementById('side-menu').classList.toggle('active');
-            document.querySelector('.menu-btn').classList.toggle('open');
-        }
-
-        // Modal Logic
-        const modal = document.getElementById("contact-modal");
-        function openModal() { modal.classList.add("modal-active"); }
-        function closeModal() { modal.classList.remove("modal-active"); }
-
-        // Close modal on click outside
-        window.onclick = (e) => { if (e.target == modal) closeModal(); }
-
-        // Discord Copy
-        function copyDiscord() {
-            navigator.clipboard.writeText("kvrmelo");
-            const dc = document.getElementById("dc-text");
-            dc.innerHTML = "Skopiowano!";
-            setTimeout(() => { dc.innerHTML = "kvrmelo"; }, 2000);
-        }
-
-        // Scroll Progress Bar
-        window.onscroll = () => {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("scroll-progress").style.width = scrolled + "%";
-        };
-
-        // Particles.js Config
+        // Particles Config
         particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ff0000" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.3 },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ff0000", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 2 }
-            },
-            "interactivity": {
-                "events": { "onhover": { "enable": true, "mode": "grab" } }
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: "#ff0000" },
+                shape: { type: "circle" },
+                opacity: { value: 0.2 },
+                size: { value: 2 },
+                line_linked: { enable: true, distance: 150, color: "#ff0000", opacity: 0.1, width: 1 },
+                move: { enable: true, speed: 2 }
             }
         });
 
-        // Formspree Handler
-        const form = document.getElementById("contact-form");
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            const btn = form.querySelector(".submit-btn");
-            btn.innerHTML = "WYSYŁANIE...";
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
+        // Simple Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-            if (response.ok) {
-                btn.innerHTML = "WYSŁANO! ✅";
-                setTimeout(() => { closeModal(); form.reset(); btn.innerHTML = "WYŚLIJ <i class='fas fa-chevron-right'></i>"; }, 2000);
-            }
-        };
+        });
     </script>
 </body>
 </html>
