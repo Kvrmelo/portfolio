@@ -1,181 +1,212 @@
 /* =========================================
-   IMPORTY - Zmieniamy na ładniejszy Outfit
+   FUNDAMENTY + NOWE CZCIONKI
 ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@400;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@300;400;900&display=swap');
 
 :root {
     --primary: #ff0000;
     --primary-glow: rgba(255, 0, 0, 0.6);
-    --bg: #030303;
-    --glass-bg: rgba(255, 255, 255, 0.03);
+    --secondary: #111;
+    --glass: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-blur: blur(16px);
-    
-    /* Kolory Social Media */
-    --yt: #ff0000;
     --tt-blue: #00f2fe;
     --tt-red: #ff0050;
-    --ig: #e1306c;
-    --tw: #9146ff;
 }
 
-/* =========================================
-   FUNDAMENTY (Outfit zamiast Intera)
-========================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
 
 body {
-    background-color: var(--bg);
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
     color: #fff;
-    font-family: 'Outfit', sans-serif; /* Ta czcionka jest dużo ładniejsza */
+    font-family: 'Outfit', sans-serif;
     overflow-x: hidden;
-    line-height: 1.6;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+/* BAJER 1: Pasek postępu przewijania */
+#scroll-progress {
+    position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--tt-red));
+    z-index: 10000; box-shadow: 0 0 10px var(--primary);
+}
+
+#particles-js {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.3;
+}
 
 /* =========================================
-   TŁO I POSTĘP
+   NICKNAME & GLITCH 2.0 (Bardziej agresywny)
 ========================================= */
-#particles-js {
-    position: fixed; inset: 0; z-index: 1;
-    pointer-events: none; opacity: 0.35;
+.nickname {
+    font-family: 'Syncopate', sans-serif;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 5px;
 }
 
-.progress-container {
-    position: fixed; top: 0; left: 0; width: 100%; height: 4px;
-    background: rgba(255, 255, 255, 0.05); z-index: 9999;
+.nickname::before, .nickname::after {
+    content: 'KVRMELO'; /* WPISZ TU SWÓJ NICK JEŚLI JEST INNY */
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: transparent;
 }
-.progress-bar {
-    height: 100%; background: var(--primary); width: 0%;
+
+.nickname:hover::before {
+    left: 2px; text-shadow: -2px 0 var(--tt-blue);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+.nickname:hover::after {
+    left: -2px; text-shadow: -2px 0 var(--tt-red);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 2s infinite linear alternate;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(10px, 9999px, 20px, 0); }
+    20% { clip: rect(40px, 9999px, 50px, 0); }
+    100% { clip: rect(80px, 9999px, 90px, 0); }
+}
+
+/* =========================================
+   LIQUID GLASS + SCANNER EFFECT
+========================================= */
+.about-content, .p-item {
+    background: var(--glass);
+    backdrop-filter: blur(25px) saturate(150%);
+    -webkit-backdrop-filter: blur(25px) saturate(150%);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* BAJER 2: Efekt skanowania światłem */
+.about-content::before, .p-item::before {
+    content: "";
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 20px;
+    background: linear-gradient(to bottom, transparent, rgba(255,0,0,0.2), transparent);
+    animation: scanning 4s infinite linear;
+}
+
+@keyframes scanning {
+    0% { top: -10%; }
+    100% { top: 110%; }
+}
+
+/* BAJER 3: Tekstura szumu na szkle */
+.about-content::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05; pointer-events: none;
+}
+
+/* =========================================
+   KARTY DOŚWIADCZENIA (NEON PULSE)
+========================================= */
+.portfolio-grid { gap: 30px; }
+
+.p-item {
+    padding: 40px 25px;
+    border-bottom: 2px solid transparent;
+}
+
+.p-item:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    border-bottom-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(255,0,0,0.1);
+}
+
+.p-icon {
+    font-size: 3.5rem;
+    transition: 0.3s;
+}
+
+.p-item:hover .p-icon {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px var(--primary));
+}
+
+/* =========================================
+   HASZTAGI (Cyber Tags)
+========================================= */
+.skill-tags span {
+    background: #000;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 6px 15px;
+    font-family: 'Syncopate';
+    font-size: 0.7rem;
+    transition: 0.3s;
+    cursor: default;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); /* Ścięte rogi */
+}
+
+.skill-tags span:hover {
+    background: var(--primary);
+    color: #fff;
     box-shadow: 0 0 15px var(--primary);
 }
 
 /* =========================================
-   HERO
+   SOCIAL MEDIA (Interactive Cards)
 ========================================= */
-.container, .section {
-    position: relative; z-index: 10;
-    display: flex; flex-direction: column; align-items: center;
-    padding: 80px 20px; max-width: 1100px; margin: 0 auto;
-}
-
-.section-title {
-    font-family: 'Syncopate', sans-serif;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-    text-transform: uppercase; letter-spacing: 4px; margin-bottom: 50px;
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-    border-bottom: 2px solid var(--primary); padding-bottom: 10px;
-}
-
-.profile-img {
-    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
-    border: 3px solid var(--primary); box-shadow: 0 0 30px var(--primary-glow);
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); box-shadow: 0 20px 40px var(--primary-glow); }
-}
-
-.main-title {
-    font-family: 'Syncopate', sans-serif;
-    font-size: clamp(2rem, 8vw, 4rem); text-transform: uppercase;
-    text-align: center; margin: 10px 0;
-}
-.nickname { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
-
-/* =========================================
-   SOCIAL MEDIA - Każdy ze swoim Glow
-========================================= */
-.links-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 15px; width: 100%; max-width: 650px;
-}
-
 .card {
-    background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border); border-radius: 15px;
-    padding: 20px 10px; text-align: center; color: #fff; text-decoration: none;
-    font-weight: 900; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex; flex-direction: column; gap: 10px;
+    background: #0a0a0a;
+    border: 1px solid #222;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
-.card:hover { transform: translateY(-8px); border-color: #fff; }
+.card i { transition: 0.5s; }
 
-/* Kolorowe Glowy */
-.card.yt:hover { box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); color: var(--yt); }
-.card.tt:hover { box-shadow: -5px 0 15px var(--tt-blue), 5px 0 15px var(--tt-red); }
-.card.ig:hover { box-shadow: 0 0 25px var(--ig); color: #ffbd39; }
-.card.tw:hover { box-shadow: 0 0 25px var(--tw); color: var(--tw); }
+.card:hover i {
+    transform: rotate(-15deg) scale(1.3);
+}
+
+/* Specyficzny Hover dla TikTok Glitch */
+.card.tt:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 5px 5px 0 var(--tt-blue), -5px -5px 0 var(--tt-red);
+}
 
 /* =========================================
-   LIQUID GLASS + BAJER (SHINE ANIMATION)
+   FORMULARZ (Glass Input)
 ========================================= */
-.about-content, .p-item, .contact-card-premium {
-    background: var(--glass-bg); backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border); border-radius: 20px;
-    padding: 40px; text-align: center; position: relative;
-    overflow: hidden; /* Dla efektu bliku */
-}
-
-/* Efekt przejeżdżającego światła */
-.about-content::after, .p-item::after {
-    content: ""; position: absolute; top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
-    transform: rotate(45deg);
-    animation: shine 5s infinite;
-}
-
-@keyframes shine {
-    0% { left: -100%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
-}
-
-/* Portfolio Items */
-.p-item:hover {
-    border-color: var(--primary);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
-    transform: scale(1.02);
-}
-
-.p-icon { font-size: 3rem; color: var(--primary); margin-bottom: 15px; }
-
-/* =========================================
-   KONTAKT I MODAL
-========================================= */
-.mail-btn-neon {
-    background: var(--primary); color: #fff; padding: 18px 40px;
-    border-radius: 50px; font-weight: 900; text-transform: uppercase; border: none;
-    box-shadow: 0 0 20px var(--primary-glow); cursor: pointer; transition: 0.3s;
-}
-
-.modal-content {
-    background: #0a0a0a; border: 2px solid var(--primary); border-radius: 20px;
-    box-shadow: 0 0 50px rgba(255, 0, 0, 0.4);
-    animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-input, textarea {
-    background: rgba(255,255,255,0.05) !important;
+#contact-form input, #contact-form textarea {
+    background: rgba(255,255,255,0.02) !important;
     border: 1px solid var(--glass-border) !important;
-    font-family: 'Outfit', sans-serif !important;
-    color: white !important;
-    border-radius: 10px !important;
+    border-bottom: 2px solid #333 !important;
+    border-radius: 0 !important; /* Industrialny wygląd */
+    transition: 0.3s;
+}
+
+#contact-form input:focus, #contact-form textarea:focus {
+    border-bottom-color: var(--primary) !important;
+    background: rgba(255,0,0,0.03) !important;
 }
 
 /* =========================================
-   MENU BOCZNE
+   BAJER: Animowane obramowanie przycisku
 ========================================= */
-#side-menu {
-    background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
-    border-right: 2px solid var(--primary);
+.submit-btn {
+    position: relative;
+    background: var(--primary);
+    overflow: hidden;
 }
-.menu-items a { font-family: 'Syncopate', sans-serif; font-size: 1rem; }
+
+.submit-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
