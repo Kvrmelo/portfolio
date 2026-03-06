@@ -1,153 +1,181 @@
-/* IMPORT CZCIONEK - NOWOCZESNE I CZYSTE */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&family=Syncopate:wght@700&display=swap');
+/* =========================================
+   IMPORTY - Zmieniamy na ładniejszy Outfit
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@400;600;900&display=swap');
 
 :root {
     --primary: #ff0000;
-    --cyan: #00f2fe;
-    --bg: #050505;
-    --glass: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.1);
+    --primary-glow: rgba(255, 0, 0, 0.6);
+    --bg: #030303;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: blur(16px);
+    
+    /* Kolory Social Media */
+    --yt: #ff0000;
+    --tt-blue: #00f2fe;
+    --tt-red: #ff0050;
+    --ig: #e1306c;
+    --tw: #9146ff;
 }
 
-/* RESET I CZCIONKA */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* =========================================
+   FUNDAMENTY (Outfit zamiast Intera)
+========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
 body {
-    background: var(--bg);
+    background-color: var(--bg);
     color: #fff;
-    font-family: 'Outfit', sans-serif; /* Koniec z brzydką czcionką */
+    font-family: 'Outfit', sans-serif; /* Ta czcionka jest dużo ładniejsza */
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* TŁO */
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+/* =========================================
+   TŁO I POSTĘP
+========================================= */
 #particles-js {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.4;
+    position: fixed; inset: 0; z-index: 1;
+    pointer-events: none; opacity: 0.35;
 }
 
+.progress-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+    background: rgba(255, 255, 255, 0.05); z-index: 9999;
+}
+.progress-bar {
+    height: 100%; background: var(--primary); width: 0%;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* =========================================
+   HERO
+========================================= */
 .container, .section {
-    position: relative;
-    z-index: 10;
-    padding: 60px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
+    position: relative; z-index: 10;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 80px 20px; max-width: 1100px; margin: 0 auto;
 }
 
-/* NAGŁÓWEK */
+.section-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    text-transform: uppercase; letter-spacing: 4px; margin-bottom: 50px;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    border-bottom: 2px solid var(--primary); padding-bottom: 10px;
+}
+
+.profile-img {
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+    border: 3px solid var(--primary); box-shadow: 0 0 30px var(--primary-glow);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); box-shadow: 0 20px 40px var(--primary-glow); }
+}
+
 .main-title {
     font-family: 'Syncopate', sans-serif;
-    font-size: clamp(2rem, 8vw, 4rem);
-    text-transform: uppercase;
-    margin-bottom: 10px;
+    font-size: clamp(2rem, 8vw, 4rem); text-transform: uppercase;
+    text-align: center; margin: 10px 0;
 }
-.nickname {
-    color: var(--primary);
-    text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-}
+.nickname { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
 
-/* UJEDNOLICONE SOCIALE - STYL TIKTOK GLITCH */
+/* =========================================
+   SOCIAL MEDIA - Każdy ze swoim Glow
+========================================= */
 .links-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-    width: 100%;
-    max-width: 700px;
-    margin-top: 30px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px; width: 100%; max-width: 650px;
 }
 
 .card {
-    background: #000;
-    border: 1px solid #fff;
-    border-radius: 12px;
-    padding: 15px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    transition: 0.2s;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border); border-radius: 15px;
+    padding: 20px 10px; text-align: center; color: #fff; text-decoration: none;
+    font-weight: 900; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex; flex-direction: column; gap: 10px;
 }
 
-/* Wszystkie przyciski reagują tak samo jak TikTok */
-.card:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 4px 4px 0px var(--cyan), -4px -4px 0px var(--primary);
-}
+.card:hover { transform: translateY(-8px); border-color: #fff; }
 
-.card i { font-size: 1.8rem; }
+/* Kolorowe Glowy */
+.card.yt:hover { box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); color: var(--yt); }
+.card.tt:hover { box-shadow: -5px 0 15px var(--tt-blue), 5px 0 15px var(--tt-red); }
+.card.ig:hover { box-shadow: 0 0 25px var(--ig); color: #ffbd39; }
+.card.tw:hover { box-shadow: 0 0 25px var(--tw); color: var(--tw); }
 
-/* SPÓJNE RAMKI NA TEKST I DOŚWIADCZENIE (LIQUID GLASS) */
+/* =========================================
+   LIQUID GLASS + BAJER (SHINE ANIMATION)
+========================================= */
 .about-content, .p-item, .contact-card-premium {
-    background: var(--glass);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 30px;
-    transition: 0.3s;
+    background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border); border-radius: 20px;
+    padding: 40px; text-align: center; position: relative;
+    overflow: hidden; /* Dla efektu bliku */
 }
 
+/* Efekt przejeżdżającego światła */
+.about-content::after, .p-item::after {
+    content: ""; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+    transform: rotate(45deg);
+    animation: shine 5s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Portfolio Items */
 .p-item:hover {
     border-color: var(--primary);
-    background: rgba(255, 0, 0, 0.05);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+    transform: scale(1.02);
 }
 
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    width: 100%;
+.p-icon { font-size: 3rem; color: var(--primary); margin-bottom: 15px; }
+
+/* =========================================
+   KONTAKT I MODAL
+========================================= */
+.mail-btn-neon {
+    background: var(--primary); color: #fff; padding: 18px 40px;
+    border-radius: 50px; font-weight: 900; text-transform: uppercase; border: none;
+    box-shadow: 0 0 20px var(--primary-glow); cursor: pointer; transition: 0.3s;
 }
 
-/* MODAL - WYSKAKUJĄCE OKNO */
 .modal-content {
-    background: #000;
-    border: 2px solid var(--primary);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+    background: #0a0a0a; border: 2px solid var(--primary); border-radius: 20px;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.4);
+    animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 input, textarea {
-    background: #111 !important;
-    border: 1px solid var(--border) !important;
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid var(--glass-border) !important;
+    font-family: 'Outfit', sans-serif !important;
     color: white !important;
-    font-family: 'Outfit', sans-serif;
     border-radius: 10px !important;
-    margin-bottom: 10px;
 }
 
-.submit-btn, .mail-btn-neon {
-    background: var(--primary) !important;
-    font-family: 'Syncopate', sans-serif;
-    font-weight: 700;
-    border-radius: 50px !important;
-    text-transform: uppercase;
-}
-
-/* SHORTSY */
-.video-container {
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: 0.3s;
-}
-.video-container:hover {
-    border-color: var(--cyan);
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
-}
-
-/* MENU BOCZNE */
+/* =========================================
+   MENU BOCZNE
+========================================= */
 #side-menu {
-    background: rgba(0, 0, 0, 0.98);
-    font-family: 'Syncopate', sans-serif;
+    background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+    border-right: 2px solid var(--primary);
 }
+.menu-items a { font-family: 'Syncopate', sans-serif; font-size: 1rem; }
