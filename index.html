@@ -2,209 +2,231 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Karmelo | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
+    
     <script src="https://apis.google.com/js/platform.js"></script>
 </head>
 <body>
 
     <div id="particles-js"></div>
+    <div id="scroll-progress"></div>
 
-    <div class="progress-container">
-        <div class="progress-bar" id="myBar"></div>
-    </div>
-
-    <div class="menu-btn" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
+    <div class="menu-btn" onclick="toggleMenu()" aria-label="Otwórz menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
     </div>
 
     <nav id="side-menu">
         <div class="menu-items">
-            <a href="#home" onclick="toggleMenu()">Start</a>
-            <a href="#about" onclick="toggleMenu()">O mnie</a>
-            <a href="#experience" onclick="toggleMenu()">Doświadczenie</a>
-            <a href="#shorts" onclick="toggleMenu()">Shortsy</a>
-            <a href="#contact" onclick="toggleMenu()">Kontakt</a>
+            <a href="#home" onclick="toggleMenu()"><i class="fas fa-home"></i> Start</a>
+            <a href="#about" onclick="toggleMenu()"><i class="fas fa-user"></i> O mnie</a>
+            <a href="#experience" onclick="toggleMenu()"><i class="fas fa-briefcase"></i> Doświadczenie</a>
+            <a href="#shorts" onclick="toggleMenu()"><i class="fas fa-video"></i> Shortsy</a>
+            <a href="#contact" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Kontakt</a>
         </div>
     </nav>
 
-    <header class="container" id="home">
-        <div class="avatar-wrapper">
+    <header class="hero container" id="home">
+        <div class="avatar-container reveal-top">
              <img src="profil.jpg" alt="Karmelo" class="profile-img">
-             <div class="online-pulse"></div>
+             <div class="status-indicator"></div>
         </div>
 
-        <h1 class="main-title">Siema, tu <span class="nickname">Karmelo</span></h1>
-        <p class="tagline">Aktor • Content Creator • Montażysta</p>
+        <div class="hero-text reveal-bottom">
+            <h1 class="main-title">Siema, tu <span class="nickname">KARMELO</span></h1>
+            <p class="tagline">Aktor • Content Creator • Montażysta</p>
+        </div>
 
-        <div class="hero-stats">
-            <div class="h-stat">
-                <div class="g-ytsubscribe" 
-                     data-channelid="UCX8ZDEL_lCJYIgd9AqtubHQ" 
-                     data-layout="default" 
-                     data-theme="dark" 
-                     data-count="default">
-                </div>
+        <div class="stats-row reveal-bottom">
+            <div class="stat-badge">
+                <div class="g-ytsubscribe" data-channelid="UCX8ZDEL_lCJYIgd9AqtubHQ" data-layout="default" data-theme="dark" data-count="default"></div>
             </div>
-
-            <div class="h-stat">
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fkvrmelo.github.io%2Fportfolio&count_bg=%23FF0000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=WIDZÓW&edge_flat=false" alt="Licznik">
+            <div class="stat-badge hits-badge">
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fkvrmelo.github.io%2Fportfolio&count_bg=%23FF0000&title_bg=%23111111&icon=&icon_color=%23E7E7E7&title=WIDZÓW&edge_flat=false" alt="Licznik">
             </div>
-
-            <div class="h-stat">
-                <div class="pro-tag">
-                    <strong>PRO</strong>
-                    <span>MONTAŻ</span>
-                </div>
+            <div class="stat-badge pro-tag">
+                <span class="pro-text">PRO</span>
+                <span class="sub-text">MONTAŻ</span>
             </div>
         </div>
 
-        <div class="links-grid">
-            <a href="https://youtube.com/@kvrmelo" class="card yt" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-            <a href="https://tiktok.com/@kvrmelo" class="card tt" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a href="https://instagram.com/kvrmelo" class="card ig" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://twitch.tv/kvrmelo" class="card tw" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
+        <div class="links-grid reveal-bottom">
+            <a href="https://youtube.com/@kvrmelo" class="social-card yt" target="_blank">
+                <i class="fab fa-youtube"></i> <span>YouTube</span>
+            </a>
+            <a href="https://tiktok.com/@kvrmelo" class="social-card tt" target="_blank">
+                <i class="fab fa-tiktok"></i> <span>TikTok</span>
+            </a>
+            <a href="https://instagram.com/kvrmelo" class="social-card ig" target="_blank">
+                <i class="fab fa-instagram"></i> <span>Instagram</span>
+            </a>
+            <a href="https://twitch.tv/kvrmelo" class="social-card tw" target="_blank">
+                <i class="fab fa-twitch"></i> <span>Twitch</span>
+            </a>
         </div>
     </header>
 
-    <section class="section" id="about">
-        <h2 class="section-title">O mnie</h2>
-        <div class="about-container">
-            <div class="about-content">
+    <section class="section container" id="about">
+        <h2 class="section-title reveal-left">O mnie</h2>
+        <div class="glass-box reveal-right">
+            <div class="about-text">
                 <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. Z powodzeniem łączę warsztat aktorski z obyciem medialnym i technicznymi umiejętnościami montażu.</p>
                 <p>Moje doświadczenie to nie tylko YouTube (@kvrmelo), ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025).</p>
-                <div class="skill-tags">
-                    <span>#Aktorstwo</span> <span>#MontażWideo</span> <span>#Pianino</span> <span>#ContentCreation</span>
-                </div>
+            </div>
+            <div class="skill-tags">
+                <span class="tag">#Aktorstwo</span>
+                <span class="tag">#MontażWideo</span>
+                <span class="tag">#Pianino</span>
+                <span class="tag">#ContentCreation</span>
             </div>
         </div>
     </section>
 
-    <section class="section" id="experience">
-        <h2 class="section-title">Doświadczenie</h2>
-        <div class="portfolio-grid">
-            <div class="p-item text-center">
-                <i class="fas fa-ad p-icon"></i>
+    <section class="section container" id="experience">
+        <h2 class="section-title reveal-left">Doświadczenie</h2>
+        <div class="grid-layout">
+            <div class="experience-card reveal-bottom">
+                <i class="fas fa-ad"></i>
                 <h3>Sodastream</h3>
                 <p>Globalna reklama (2025)</p>
             </div>
-            <div class="p-item text-center">
-                <i class="fas fa-tv p-icon"></i>
+            <div class="experience-card reveal-bottom">
+                <i class="fas fa-tv"></i>
                 <h3>Tatuśkowie</h3>
                 <p>Serial Polsat</p>
             </div>
-            <div class="p-item text-center">
-                <i class="fas fa-theater-masks p-icon"></i>
+            <div class="experience-card reveal-bottom">
+                <i class="fas fa-theater-masks"></i>
                 <h3>Teatr Roma</h3>
                 <p>Spektakl musicalowy</p>
             </div>
-            <div class="p-item text-center">
-                <i class="fas fa-award p-icon"></i>
+            <div class="experience-card reveal-bottom">
+                <i class="fas fa-award"></i>
                 <h3>Zawodowy montaż</h3>
-                <p>Montaż dla dużych firm</p>
+                <p>Dla dużych marek</p>
             </div>
         </div>
     </section>
 
-    <section class="section" id="shorts">
-        <h2 class="section-title">Moje Shortsy</h2>
+    <section class="section container" id="shorts">
+        <h2 class="section-title reveal-left">Moje Shortsy</h2>
         <div class="shorts-grid">
-            <div class="video-container">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/XQrDdlafN00?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
+            <div class="video-item reveal-bottom">
+                <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen loading="lazy"></iframe>
             </div>
-            <div class="video-container">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/DZ8vyfdgACc?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
+            <div class="video-item reveal-bottom">
+                <iframe src="https://www.youtube.com/embed/DZ8vyfdgACc" frameborder="0" allowfullscreen loading="lazy"></iframe>
             </div>
-            <div class="video-container">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0xJZrCEK_xY?origin=https://kvrmelo.github.io" frameborder="0" allowfullscreen></iframe>
+            <div class="video-item reveal-bottom">
+                <iframe src="https://www.youtube.com/embed/0xJZrCEK_xY" frameborder="0" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-    <section class="section" id="contact">
-        <h2 class="section-title">Współpraca</h2>
-        <div class="contact-wrapper">
-            <div class="contact-card-premium">
-                <div class="contact-info">
-                    <h3>Masz projekt w głowie?</h3>
-                    <p>Napisz bezpośrednio tutaj – stwórzmy coś razem.</p>
-                </div>
-                <div class="contact-actions">
-                    <button class="mail-btn-neon" onclick="openContactForm()">
-                        <i class="fas fa-paper-plane"></i> Napisz wiadomość
-                    </button>
-                    <div class="discord-box-premium" onclick="copyDiscord()">
-                        <div class="dc-icon"><i class="fab fa-discord"></i></div>
-                        <div class="dc-details">
-                            <span class="dc-label">Discord</span>
-                            <span class="dc-username" id="dc-text">kvrmelo</span>
-                        </div>
-                    </div>
-                </div>
+    <section class="section container" id="contact">
+        <h2 class="section-title reveal-left">Współpraca</h2>
+        <div class="contact-card reveal-bottom">
+            <div class="contact-header">
+                <h3>Masz projekt w głowie?</h3>
+                <p>Napisz bezpośrednio tutaj – stwórzmy coś razem.</p>
             </div>
-        </div>
-
-        <div id="contact-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal" onclick="closeContactForm()">&times;</span>
-                <h3>Wyślij wiadomość</h3>
-                <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
-                    <input type="text" name="name" placeholder="Twój Nick / Imię" required>
-                    <input type="email" name="email" placeholder="Twój E-mail" required>
-                    <input type="text" name="subject" placeholder="Temat">
-                    <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
-                    <button type="submit" class="submit-btn">Wyślij</button>
-                </form>
+            <div class="contact-btns">
+                <button class="btn-neon" onclick="openModal()">
+                    <i class="fas fa-paper-plane"></i> WYŚLIJ WIADOMOŚĆ
+                </button>
+                <div class="discord-tag" onclick="copyDiscord()">
+                    <i class="fab fa-discord"></i>
+                    <span id="dc-text">kvrmelo</span>
+                </div>
             </div>
         </div>
     </section>
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-window">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h3>Kontakt</h3>
+            <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
+                <div class="input-group">
+                    <input type="text" name="name" placeholder="Nick / Imię" required>
+                    <input type="email" name="email" placeholder="E-mail" required>
+                </div>
+                <input type="text" name="subject" placeholder="Temat">
+                <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
+                <button type="submit" class="submit-btn">WYŚLIJ <i class="fas fa-chevron-right"></i></button>
+            </form>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Inicjalizacja cząsteczek
+        // Menu Toggle
+        function toggleMenu() {
+            document.getElementById('side-menu').classList.toggle('active');
+            document.querySelector('.menu-btn').classList.toggle('open');
+        }
+
+        // Modal Logic
+        const modal = document.getElementById("contact-modal");
+        function openModal() { modal.classList.add("modal-active"); }
+        function closeModal() { modal.classList.remove("modal-active"); }
+
+        // Close modal on click outside
+        window.onclick = (e) => { if (e.target == modal) closeModal(); }
+
+        // Discord Copy
+        function copyDiscord() {
+            navigator.clipboard.writeText("kvrmelo");
+            const dc = document.getElementById("dc-text");
+            dc.innerHTML = "Skopiowano!";
+            setTimeout(() => { dc.innerHTML = "kvrmelo"; }, 2000);
+        }
+
+        // Scroll Progress Bar
+        window.onscroll = () => {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+
+        // Particles.js Config
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#ff0000" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.5 },
+                "opacity": { "value": 0.3 },
                 "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ff0000", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 3 }
+                "line_linked": { "enable": true, "distance": 150, "color": "#ff0000", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 2 }
             },
             "interactivity": {
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
+                "events": { "onhover": { "enable": true, "mode": "grab" } }
             }
         });
 
-        // Funkcje menu i modal
-        function toggleMenu() { document.getElementById('side-menu').classList.toggle('active'); }
-        function openContactForm() { document.getElementById("contact-modal").style.display = "block"; }
-        function closeContactForm() { document.getElementById("contact-modal").style.display = "none"; }
-        
-        function copyDiscord() {
-            navigator.clipboard.writeText("kvrmelo");
-            const txt = document.getElementById("dc-text");
-            txt.innerHTML = "Skopiowano!";
-            setTimeout(() => { txt.innerHTML = "kvrmelo"; }, 2000);
-        }
-
-        // Formspree
+        // Formspree Handler
         const form = document.getElementById("contact-form");
         form.onsubmit = async (e) => {
             e.preventDefault();
             const btn = form.querySelector(".submit-btn");
-            btn.innerHTML = "Wysyłanie...";
+            btn.innerHTML = "WYSYŁANIE...";
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
                 headers: { 'Accept': 'application/json' }
             });
             if (response.ok) {
-                btn.innerHTML = "Wysłano! ✅";
-                setTimeout(() => { closeContactForm(); form.reset(); btn.innerHTML = "Wyślij"; }, 2000);
+                btn.innerHTML = "WYSŁANO! ✅";
+                setTimeout(() => { closeModal(); form.reset(); btn.innerHTML = "WYŚLIJ <i class='fas fa-chevron-right'></i>"; }, 2000);
             }
         };
     </script>
