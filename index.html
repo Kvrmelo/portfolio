@@ -89,20 +89,25 @@
             </div>
         </div>
     </section>
-
-    <section class="section" id="shorts">
-        <h2 class="section-title">Moje Shortsy</h2>
-        <div class="video-main" style="max-width: 315px; margin: 0 auto; border-radius: 30px; overflow: hidden; aspect-ratio: 9/16; box-shadow: 0 0 30px rgba(255,0,0,0.3); border: 2px solid rgba(255,0,0,0.2); position: relative;">
-            <iframe 
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                src="https://www.youtube.com/embed/XQrDdlafN00" 
-                title="Karmelo Shorts" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
+<section class="section" id="shorts">
+    <h2 class="section-title">Moje Shortsy</h2>
+    <div class="shorts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; margin: 0 auto;">
+        
+        <div class="video-container" style="border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; box-shadow: 0 0 20px rgba(255,0,0,0.2); border: 1px solid rgba(255,0,0,0.2);">
+            <iframe style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
         </div>
-    </section>
+
+        <div class="video-container" style="border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; box-shadow: 0 0 20px rgba(255,0,0,0.2); border: 1px solid rgba(255,0,0,0.2);">
+            <iframe style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/TUTAJ_ID_FILMU_2" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-container" style="border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; box-shadow: 0 0 20px rgba(255,0,0,0.2); border: 1px solid rgba(255,0,0,0.2);">
+            <iframe style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/TUTAJ_ID_FILMU_3" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+    </div>
+</section>
+
 
     <section class="section" id="contact">
         <h2 class="section-title">Współpraca</h2>
@@ -250,3 +255,4 @@
     </script>
 </body>
 </html>
+
