@@ -3,152 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karmelo | Official Actor & Creator Hub</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Karmelo | Official Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --glow: rgba(255, 255, 255, 0.5);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Nawigacja w stylu Merch --- */
+        .top-nav {
+            position: fixed;
+            top: 20px; left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            padding: 12px 30px;
+            border-radius: 100px;
+            z-index: 1000;
+            display: flex; gap: 20px;
+        }
+
+        .top-nav a {
+            color: #888; text-decoration: none; font-size: 11px;
+            font-weight: 700; letter-spacing: 2px; transition: 0.3s;
+        }
+
+        .top-nav a:hover { color: white; text-shadow: 0 0 10px white; }
+
+        /* --- Hero --- */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+        }
+
+        .avatar-box {
+            position: relative;
+            width: 180px; height: 180px;
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 100%; height: 100%;
+            border-radius: 50%; border: 2px solid white;
+            box-shadow: 0 0 40px var(--glow);
+            object-fit: cover;
+        }
+
+        .status {
+            position: absolute; bottom: 10px; right: 15px;
+            background: #00ff00; color: black;
+            font-size: 9px; font-weight: 900;
+            padding: 3px 10px; border-radius: 20px;
+        }
+
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; letter-spacing: -2px; }
+        h1 span { text-shadow: 0 0 20px white; }
+
+        .stats {
+            display: flex; gap: 30px; margin: 30px 0;
+            align-items: center;
+        }
+        .stat-item b { font-size: 1.8rem; display: block; }
+        .stat-item span { font-size: 10px; color: #555; text-transform: uppercase; }
+        .divider { width: 1px; height: 30px; background: var(--border); }
+
+        /* --- Sociale --- */
+        .socials { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: white; padding: 12px 25px;
+            border-radius: 12px; text-decoration: none;
+            font-weight: 700; transition: 0.3s;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .btn:hover {
+            background: white; color: black;
+            box-shadow: 0 0 25px white; transform: translateY(-5px);
+        }
+
+        /* --- Sekcje --- */
+        section { padding: 80px 10%; max-width: 1200px; margin: 0 auto; }
+        h2 { text-align: center; margin-bottom: 40px; font-size: 2rem; }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 30px; border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .p-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 25px; border-radius: 20px; text-align: center;
+        }
+
+        .short {
+            aspect-ratio: 9/16;
+            border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .short iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- Modal --- */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(20px); z-index: 2000;
+            align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: #0d0d0d; border: 1px solid var(--border);
+            padding: 30px; border-radius: 25px; width: 90%; max-width: 400px;
+        }
+        input, textarea {
+            width: 100%; background: #151515; border: 1px solid #222;
+            padding: 12px; margin-bottom: 10px; color: white; border-radius: 10px;
+        }
+        .send-btn {
+            width: 100%; padding: 12px; background: white; border: none;
+            border-radius: 10px; font-weight: 900; cursor: pointer;
+        }
+    </style>
 </head>
-<body class="dark-elite">
+<body>
 
-    <div id="particles-js"></div>
-    <div class="ambient-glow"></div>
-
-    <nav class="top-nav-glass">
-        <div class="nav-container">
-            <a href="#about">O MNIE</a>
-            <a href="#experience" class="nav-active">PORTFOLIO</a>
-            <a href="#contact">KONTAKT (0)</a>
-        </div>
+    <nav class="top-nav">
+        <a href="#about">O MNIE</a>
+        <a href="#experience">PORTFOLIO</a>
+        <a href="#contact">KONTAKT</a>
     </nav>
 
-    <div class="menu-btn" onclick="toggleMenu()">
-        <div class="menu-icon"><span></span><span></span><span></span></div>
-    </div>
-    
-    <nav id="side-menu">
-        <div class="close-btn" onclick="toggleMenu()">×</div>
-        <div class="menu-items">
-            <a href="#home" onclick="toggleMenu()">Start</a>
-            <a href="#about" onclick="toggleMenu()">O mnie</a>
-            <a href="#experience" onclick="toggleMenu()">Doświadczenie</a>
-            <a href="#shorts" onclick="toggleMenu()">Shortsy</a>
-            <a href="#contact" onclick="toggleMenu()">Współpraca</a>
+    <header class="hero">
+        <div class="avatar-box">
+            <img src="profil.jpg" alt="Karmelo" class="profile-img">
+            <div class="status">ONLINE</div>
         </div>
-    </nav>
+        <h1>Siema, tu <span>Karmelo</span></h1>
+        
+        <div class="stats">
+            <div class="stat-item"><b>2025</b><span>Global Ad</span></div>
+            <div class="divider"></div>
+            <div class="stat-item"><b>100%</b><span>Pasji</span></div>
+            <div class="divider"></div>
+            <div class="stat-item"><b>PRO</b><span>Montaż</span></div>
+        </div>
 
-    <header class="hero-v4" id="home">
-        <div class="hero-main-box">
-            <div class="avatar-container">
-                <div class="avatar-ring"></div>
-                <img src="profil.jpg" alt="Karmelo" class="profile-img-v4">
-                <div class="status-indicator">ONLINE</div>
-            </div>
-
-            <h1 class="main-title-v4">Siema, tu <span class="nickname-v4">Karmelo</span></h1>
-            <p class="tagline-v4">Aktor • Content Creator • Pianista</p>
-
-            <div class="hero-stats-v4">
-                <div class="stat-item">
-                    <span class="stat-num">2025</span>
-                    <span class="stat-label">Global Ad</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">100%</span>
-                    <span class="stat-label">Pasji</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">PRO</span>
-                    <span class="stat-label">Montaż</span>
-                </div>
-            </div>
-
-            <div class="social-grid-v4">
-                <a href="https://youtube.com/@kvrmelo" class="social-btn yt-glow" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-                <a href="https://tiktok.com/@kvrmelo" class="social-btn tt-glow" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-                <a href="https://instagram.com/kvrmelo" class="social-btn ig-glow" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://twitch.tv/kvrmelo" class="social-btn tw-glow" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
-            </div>
+        <div class="socials">
+            <a href="https://youtube.com/@kvrmelo" target="_blank" class="btn"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://tiktok.com/@kvrmelo" target="_blank" class="btn"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://instagram.com/kvrmelo" target="_blank" class="btn"><i class="fab fa-instagram"></i> Instagram</a>
         </div>
     </header>
 
-    <section class="section-v4" id="about">
-        <h2 class="section-title-v4">O mnie</h2>
-        <div class="glass-card about-box">
-            <div class="card-glow"></div>
-            <div class="about-text">
-                <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia.</p>
-                <div class="skill-tags-v4">
-                    <span>#Aktorstwo</span><span>#MontażWideo</span><span>#Pianino</span>
-                </div>
-            </div>
+    <section id="about">
+        <h2>O mnie</h2>
+        <div class="card">
+            <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia.</p>
         </div>
     </section>
 
-    <section class="section-v4" id="experience">
-        <h2 class="section-title-v4">Doświadczenie</h2>
-        <div class="portfolio-grid-v4">
-            <div class="p-card">
-                <i class="fas fa-ad"></i>
-                <h3>Sodastream</h3>
-                <p>Globalna reklama (2025)</p>
-            </div>
-            <div class="p-card">
-                <i class="fas fa-tv"></i>
-                <h3>Tatuśkowie</h3>
-                <p>Serial Polsat</p>
-            </div>
+    <section id="experience">
+        <h2>Doświadczenie</h2>
+        <div class="grid">
+            <div class="p-item"><h3>Sodastream</h3><p>Globalna reklama (2025)</p></div>
+            <div class="p-item"><h3>Tatuśkowie</h3><p>Serial Polsat</p></div>
         </div>
     </section>
 
-    <section class="section-v4" id="shorts">
-        <h2 class="section-title-v4">Moje Shortsy</h2>
-        <div class="shorts-wrapper">
-            <div class="short-container">
-                <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="short-container">
-                <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
-            </div>
+    <section id="shorts">
+        <h2>Shortsy</h2>
+        <div class="grid">
+            <div class="short"><iframe src="https://www.youtube.com/embed/XQrDdlafN00"></iframe></div>
+            <div class="short"><iframe src="https://www.youtube.com/embed/XQrDdlafN00"></iframe></div>
         </div>
     </section>
 
-    <section class="section-v4" id="contact">
-        <div class="contact-premium-v4">
-            <div class="contact-header">
-                <h2>Współpraca</h2>
-                <p>Stwórzmy coś razem.</p>
-            </div>
-            <div class="contact-actions-v4">
-                <button class="action-btn mail-glow" onclick="openContactForm()">
-                    <i class="fas fa-paper-plane"></i> Napisz wiadomość
-                </button>
-                <div class="action-btn dc-glow" onclick="copyDiscord()">
-                    <i class="fab fa-discord"></i>
-                    <span class="dc-name" id="dc-text">kvrmelo</span>
-                </div>
-            </div>
-        </div>
-
-        <div id="contact-modal" class="modal-v4">
-            <div class="modal-content-v4">
-                <span class="close-modal" onclick="closeContactForm()">×</span>
-                <h3>Wyślij wiadomość</h3>
-                <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
-                    <input type="text" name="name" placeholder="Twój Nick" required>
-                    <input type="email" name="email" placeholder="Twój E-mail" required>
-                    <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
-                    <button type="submit" class="submit-btn-v4">Wyślij teraz</button>
-                </form>
-            </div>
-        </div>
+    <section id="contact" style="text-align: center;">
+        <button class="btn" style="margin: 0 auto;" onclick="document.getElementById('m').style.display='flex'">
+            Napisz wiadomość
+        </button>
     </section>
 
-    <footer class="final-footer">
-        <p>© 2026 KARMELO | Kreatywne Studio Wideo</p>
-    </footer>
+    <div id="m" class="modal">
+        <div class="modal-content">
+            <span style="float:right; cursor:pointer;" onclick="document.getElementById('m').style.display='none'">×</span>
+            <h3 style="margin-bottom:15px">Kontakt</h3>
+            <form action="https://formspree.io/f/xqeyzypj" method="POST">
+                <input type="email" name="email" placeholder="E-mail" required>
+                <textarea name="message" rows="4" placeholder="Wiadomość" required></textarea>
+                <button type="submit" class="send-btn">Wyślij</button>
+            </form>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
 </body>
 </html>
