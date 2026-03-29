@@ -13,9 +13,13 @@
     <div id="particles-js"></div>
     <div class="ambient-glow"></div>
 
-    <div class="progress-container">
-        <div class="progress-bar" id="myBar"></div>
-    </div>
+    <nav class="top-nav-glass">
+        <div class="nav-container">
+            <a href="#about">O MNIE</a>
+            <a href="#experience" class="nav-active">PORTFOLIO</a>
+            <a href="#contact">KONTAKT (0)</a>
+        </div>
+    </nav>
 
     <div class="menu-btn" onclick="toggleMenu()">
         <div class="menu-icon"><span></span><span></span><span></span></div>
@@ -24,11 +28,11 @@
     <nav id="side-menu">
         <div class="close-btn" onclick="toggleMenu()">×</div>
         <div class="menu-items">
-            <a href="#home" onclick="toggleMenu()"><i class="fas fa-home"></i> Start</a>
-            <a href="#about" onclick="toggleMenu()"><i class="fas fa-user"></i> O mnie</a>
-            <a href="#experience" onclick="toggleMenu()"><i class="fas fa-briefcase"></i> Doświadczenie</a>
-            <a href="#shorts" onclick="toggleMenu()"><i class="fas fa-play"></i> Shortsy</a>
-            <a href="#contact" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Współpraca</a>
+            <a href="#home" onclick="toggleMenu()">Start</a>
+            <a href="#about" onclick="toggleMenu()">O mnie</a>
+            <a href="#experience" onclick="toggleMenu()">Doświadczenie</a>
+            <a href="#shorts" onclick="toggleMenu()">Shortsy</a>
+            <a href="#contact" onclick="toggleMenu()">Współpraca</a>
         </div>
     </nav>
 
@@ -74,10 +78,9 @@
         <div class="glass-card about-box">
             <div class="card-glow"></div>
             <div class="about-text">
-                <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. Z powodzeniem łączę warsztat aktorski z obyciem medialnym i technicznymi umiejętnościami montażu.</p>
-                <p>Moje doświadczenie to nie tylko YouTube (@kvrmelo), ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025).</p>
+                <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia.</p>
                 <div class="skill-tags-v4">
-                    <span>#Aktorstwo</span><span>#MontażWideo</span><span>#Pianino</span><span>#ContentCreation</span>
+                    <span>#Aktorstwo</span><span>#MontażWideo</span><span>#Pianino</span>
                 </div>
             </div>
         </div>
@@ -94,17 +97,7 @@
             <div class="p-card">
                 <i class="fas fa-tv"></i>
                 <h3>Tatuśkowie</h3>
-                <p>Serial Polsat (odc. 50)</p>
-            </div>
-            <div class="p-card">
-                <i class="fas fa-theater-masks"></i>
-                <h3>Teatr Roma</h3>
-                <p>Spektakl musicalowy</p>
-            </div>
-            <div class="p-card">
-                <i class="fas fa-award"></i>
-                <h3>Nagroda</h3>
-                <p>1. miejsce - Stand-up</p>
+                <p>Serial Polsat</p>
             </div>
         </div>
     </section>
@@ -116,10 +109,7 @@
                 <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="short-container">
-                <iframe src="https://www.youtube.com/embed/TUTAJ_ID_FILMU_2" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="short-container">
-                <iframe src="https://www.youtube.com/embed/TUTAJ_ID_FILMU_3" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -128,20 +118,15 @@
         <div class="contact-premium-v4">
             <div class="contact-header">
                 <h2>Współpraca</h2>
-                <p>Masz projekt? Stwórzmy go razem.</p>
+                <p>Stwórzmy coś razem.</p>
             </div>
-            
             <div class="contact-actions-v4">
                 <button class="action-btn mail-glow" onclick="openContactForm()">
                     <i class="fas fa-paper-plane"></i> Napisz wiadomość
                 </button>
-                
                 <div class="action-btn dc-glow" onclick="copyDiscord()">
                     <i class="fab fa-discord"></i>
-                    <div class="dc-text-box">
-                        <span class="dc-label">Discord</span>
-                        <span class="dc-name" id="dc-text">kvrmelo</span>
-                    </div>
+                    <span class="dc-name" id="dc-text">kvrmelo</span>
                 </div>
             </div>
         </div>
@@ -151,9 +136,8 @@
                 <span class="close-modal" onclick="closeContactForm()">×</span>
                 <h3>Wyślij wiadomość</h3>
                 <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
-                    <input type="text" name="name" placeholder="Twój Nick / Imię" required>
+                    <input type="text" name="name" placeholder="Twój Nick" required>
                     <input type="email" name="email" placeholder="Twój E-mail" required>
-                    <input type="text" name="subject" placeholder="Temat">
                     <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
                     <button type="submit" class="submit-btn-v4">Wyślij teraz</button>
                 </form>
@@ -165,10 +149,6 @@
         <p>© 2026 KARMELO | Kreatywne Studio Wideo</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>elivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
