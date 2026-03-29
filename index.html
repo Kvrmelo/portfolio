@@ -3,144 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karmelo | Professional Creator & Actor</title>
+    <title>Karmelo | Official Actor & Creator Hub</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dark-elite">
 
     <div id="particles-js"></div>
+    <div class="ambient-glow"></div>
 
-    <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
 
-    <nav class="glass-nav">
-        <div class="nav-content">
-            <div class="nav-logo">KARMELO</div>
-            <div class="nav-links">
-                <a href="#home">Start</a>
-                <a href="#about">O mnie</a>
-                <a href="#experience">Portfolio</a>
-                <a href="#shorts">Shortsy</a>
-                <a href="#contact">Kontakt</a>
-            </div>
-            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="menu-btn" onclick="toggleMenu()">
+        <div class="menu-icon"><span></span><span></span><span></span></div>
+    </div>
+    
+    <nav id="side-menu">
+        <div class="close-btn" onclick="toggleMenu()">×</div>
+        <div class="menu-items">
+            <a href="#home" onclick="toggleMenu()"><i class="fas fa-home"></i> Start</a>
+            <a href="#about" onclick="toggleMenu()"><i class="fas fa-user"></i> O mnie</a>
+            <a href="#experience" onclick="toggleMenu()"><i class="fas fa-briefcase"></i> Doświadczenie</a>
+            <a href="#shorts" onclick="toggleMenu()"><i class="fas fa-play"></i> Shortsy</a>
+            <a href="#contact" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Współpraca</a>
         </div>
     </nav>
 
-    <header class="hero-section" id="home">
-        <div class="hero-container">
-            <div class="avatar-box">
-                <div class="avatar-glow"></div>
-                <img src="profil.jpg" alt="Karmelo" class="profile-img-v3">
-                <div class="status-badge">ONLINE</div>
-            </div>
-            
-            <h1 class="hero-title">SIEMA, TU <span class="accent">KARMELO</span></h1>
-            <p class="hero-subtitle">Aktor • Content Creator • Pianista</p>
-
-            <div class="stats-row">
-                <div class="stat-card"><strong>2025</strong><span>Global Ad</span></div>
-                <div class="stat-card"><strong>100%</strong><span>Pasji</span></div>
-                <div class="stat-card"><strong>PRO</strong><span>Montaż</span></div>
+    <header class="hero-v4" id="home">
+        <div class="hero-main-box">
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <img src="profil.jpg" alt="Karmelo" class="profile-img-v4">
+                <div class="status-indicator">ONLINE</div>
             </div>
 
-            <div class="social-grid-v3">
-                <a href="https://youtube.com/@kvrmelo" class="s-card yt"><i class="fab fa-youtube"></i></a>
-                <a href="https://tiktok.com/@kvrmelo" class="s-card tt"><i class="fab fa-tiktok"></i></a>
-                <a href="https://instagram.com/kvrmelo" class="s-card ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitch.tv/kvrmelo" class="s-card tw"><i class="fab fa-twitch"></i></a>
+            <h1 class="main-title-v4">Siema, tu <span class="nickname-v4">Karmelo</span></h1>
+            <p class="tagline-v4">Aktor • Content Creator • Pianista</p>
+
+            <div class="hero-stats-v4">
+                <div class="stat-item">
+                    <span class="stat-num">2025</span>
+                    <span class="stat-label">Global Ad</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Pasji</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">PRO</span>
+                    <span class="stat-label">Montaż</span>
+                </div>
+            </div>
+
+            <div class="social-grid-v4">
+                <a href="https://youtube.com/@kvrmelo" class="social-btn yt-glow" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://tiktok.com/@kvrmelo" class="social-btn tt-glow" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://instagram.com/kvrmelo" class="social-btn ig-glow" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://twitch.tv/kvrmelo" class="social-btn tw-glow" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
             </div>
         </div>
     </header>
 
-    <section class="section-v3" id="about">
-        <div class="container-v3">
-            <h2 class="section-header">O MNIE <span class="line"></span></h2>
-            <div class="about-grid-v3">
-                <div class="about-text-v3">
-                    <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. Z powodzeniem łączę warsztat aktorski z obyciem medialnym i technicznymi umiejętnościami montażu.</p>
-                    <p>Moje doświadczenie to nie tylko YouTube, ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025).</p>
-                    <div class="tags-v3">
-                        <span>#Aktorstwo</span><span>#MontażWideo</span><span>#Pianino</span>
+    <section class="section-v4" id="about">
+        <h2 class="section-title-v4">O mnie</h2>
+        <div class="glass-card about-box">
+            <div class="card-glow"></div>
+            <div class="about-text">
+                <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. Z powodzeniem łączę warsztat aktorski z obyciem medialnym i technicznymi umiejętnościami montażu.</p>
+                <p>Moje doświadczenie to nie tylko YouTube (@kvrmelo), ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025).</p>
+                <div class="skill-tags-v4">
+                    <span>#Aktorstwo</span><span>#MontażWideo</span><span>#Pianino</span><span>#ContentCreation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-v4" id="experience">
+        <h2 class="section-title-v4">Doświadczenie</h2>
+        <div class="portfolio-grid-v4">
+            <div class="p-card">
+                <i class="fas fa-ad"></i>
+                <h3>Sodastream</h3>
+                <p>Globalna reklama (2025)</p>
+            </div>
+            <div class="p-card">
+                <i class="fas fa-tv"></i>
+                <h3>Tatuśkowie</h3>
+                <p>Serial Polsat (odc. 50)</p>
+            </div>
+            <div class="p-card">
+                <i class="fas fa-theater-masks"></i>
+                <h3>Teatr Roma</h3>
+                <p>Spektakl musicalowy</p>
+            </div>
+            <div class="p-card">
+                <i class="fas fa-award"></i>
+                <h3>Nagroda</h3>
+                <p>1. miejsce - Stand-up</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-v4" id="shorts">
+        <h2 class="section-title-v4">Moje Shortsy</h2>
+        <div class="shorts-wrapper">
+            <div class="short-container">
+                <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="short-container">
+                <iframe src="https://www.youtube.com/embed/TUTAJ_ID_FILMU_2" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="short-container">
+                <iframe src="https://www.youtube.com/embed/TUTAJ_ID_FILMU_3" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-v4" id="contact">
+        <div class="contact-premium-v4">
+            <div class="contact-header">
+                <h2>Współpraca</h2>
+                <p>Masz projekt? Stwórzmy go razem.</p>
+            </div>
+            
+            <div class="contact-actions-v4">
+                <button class="action-btn mail-glow" onclick="openContactForm()">
+                    <i class="fas fa-paper-plane"></i> Napisz wiadomość
+                </button>
+                
+                <div class="action-btn dc-glow" onclick="copyDiscord()">
+                    <i class="fab fa-discord"></i>
+                    <div class="dc-text-box">
+                        <span class="dc-label">Discord</span>
+                        <span class="dc-name" id="dc-text">kvrmelo</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="section-v3" id="experience">
-        <div class="container-v3">
-            <h2 class="section-header">PORTFOLIO <span class="line"></span></h2>
-            <div class="portfolio-grid-v3">
-                <div class="p-card-v3">
-                    <i class="fas fa-ad"></i>
-                    <h3>Sodastream</h3>
-                    <p>Globalna reklama (2025)</p>
-                </div>
-                <div class="p-card-v3">
-                    <i class="fas fa-tv"></i>
-                    <h3>Tatuśkowie</h3>
-                    <p>Serial Polsat (odc. 50)</p>
-                </div>
-                <div class="p-card-v3">
-                    <i class="fas fa-theater-masks"></i>
-                    <h3>Teatr Roma</h3>
-                    <p>Spektakl musicalowy</p>
-                </div>
-                <div class="p-card-v3">
-                    <i class="fas fa-award"></i>
-                    <h3>Nagroda</h3>
-                    <p>1. miejsce - Stand-up</p>
-                </div>
+        <div id="contact-modal" class="modal-v4">
+            <div class="modal-content-v4">
+                <span class="close-modal" onclick="closeContactForm()">×</span>
+                <h3>Wyślij wiadomość</h3>
+                <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
+                    <input type="text" name="name" placeholder="Twój Nick / Imię" required>
+                    <input type="email" name="email" placeholder="Twój E-mail" required>
+                    <input type="text" name="subject" placeholder="Temat">
+                    <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
+                    <button type="submit" class="submit-btn-v4">Wyślij teraz</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <section class="section-v3" id="shorts">
-        <div class="container-v3">
-            <h2 class="section-header">LATEST SHORTS <span class="line"></span></h2>
-            <div class="shorts-container-v3">
-                <div class="short-frame">
-                    <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
-                </div>
-                </div>
-        </div>
-    </section>
-
-    <section class="section-v3" id="contact">
-        <div class="container-v3">
-            <h2 class="section-header">WSPÓŁPRACA <span class="line"></span></h2>
-            <div class="contact-grid-v3">
-                <div class="form-container-v3">
-                    <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
-                        <input type="text" name="name" placeholder="Twoje Imię" required>
-                        <input type="email" name="email" placeholder="Twój E-mail" required>
-                        <input type="text" name="subject" placeholder="Temat projektu">
-                        <textarea name="message" placeholder="Twoja wiadomość..." rows="5" required></textarea>
-                        <button type="submit" class="btn-v3">WYŚLIJ PROPOZYCJĘ</button>
-                    </form>
-                </div>
-                <div class="discord-promo-v3">
-                    <div class="dc-card-v3" onclick="copyDiscord()">
-                        <i class="fab fa-discord"></i>
-                        <div class="dc-info">
-                            <span>KLIKNIJ ABY SKOPIOWAĆ</span>
-                            <strong id="dc-text">kvrmelo</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer-v3">
-        <p>&copy; 2026 KARMELO. All Rights Reserved.</p>
+    <footer class="final-footer">
+        <p>© 2026 KARMELO | Kreatywne Studio Wideo</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Tutaj wklejasz kod JavaScript, który miałeś wcześniej (Scroll, Particles, Formspree)
-        // Zachowujemy go, bo działał dobrze technologicznie.
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
