@@ -1,127 +1,273 @@
+/* =========================================
+   1. RESET I KOLORYSTYKA (STYL ZE ZDJĘCIA)
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+
 :root {
-    --bg: #0a0a0a;
-    --card-bg: #111111;
-    --accent: #ffffff;
-    --text-dim: #888888;
+    --bg-black: #050505;        /* Głęboka czerń tła */
+    --card-bg: #0d0d0d;         /* Nieco jaśniejszy czarny dla kart */
+    --accent-white: #ffffff;    /* Czysta biel dla akcentów */
+    --text-gray: #888888;       /* Przygaszony tekst */
+    --white-glow: rgba(255, 255, 255, 0.05);
+    --border-color: #1a1a1a;    /* Bardzo ciemne ramki */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--accent);
+    background-color: var(--bg-black);
+    color: var(--accent-white);
     font-family: 'Inter', sans-serif;
-    margin: 0;
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Navbar */
-.navbar {
+/* Subtelny gradient poświaty na samej górze strony */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 400px;
+    background: radial-gradient(circle at 50% -20%, rgba(255,255,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Custom Scrollbar - Minimalistyczny */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-black); }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #444; }
+
+/* =========================================
+   2. NAWIGACJA (CLEAN & FLOATING)
+   ========================================= */
+.main-nav {
+    position: fixed;
+    top: 0; width: 100%;
+    padding: 30px 10%;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
-    padding: 30px 10%;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    background: linear-gradient(to bottom, rgba(10,10,10,1), transparent);
+    align-items: center;
+    background: linear-gradient(to bottom, var(--bg-black), transparent);
 }
 
-.nav-logo { font-weight: 900; letter-spacing: 5px; }
+.logo {
+    font-weight: 900;
+    letter-spacing: 6px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
 .nav-links a {
-    color: var(--text-dim);
+    color: var(--text-gray);
     text-decoration: none;
     margin-left: 30px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
+    text-transform: uppercase;
     transition: 0.3s;
 }
-.nav-links a:hover { color: var(--accent); }
 
-/* Hero Section */
-.hero {
+.nav-links a:hover {
+    color: var(--accent-white);
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* =========================================
+   3. HERO SECTION (TYPOGRAFIA LUXURY)
+   ========================================= */
+.hero-v2 {
     height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
-.glimmer-text {
-    font-size: 5rem;
+.glimmer-name {
+    font-size: clamp(3rem, 10vw, 6.5rem);
     font-weight: 900;
-    letter-spacing: -2px;
-    margin: 0;
-    background: linear-gradient(to bottom, #fff 40%, #444 100%);
+    letter-spacing: -3px;
+    line-height: 0.9;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom, #ffffff 40%, #444444 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.hero-line {
-    width: 60px;
-    height: 2px;
-    background: var(--accent);
-    margin: 20px auto;
+.minimal-tagline {
+    font-size: 0.8rem;
+    letter-spacing: 12px;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    font-weight: 300;
 }
 
-/* Discord Section */
-.discord-container {
+/* =========================================
+   4. SEKCJE I KARTY (OSTRE KRAWĘDZIE)
+   ========================================= */
+.section-v2 {
+    padding: 120px 10%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.v2-title {
+    font-size: 0.75rem;
+    letter-spacing: 6px;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    margin-bottom: 60px;
     display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.v2-title::after {
+    content: "";
+    height: 1px;
+    background: #1a1a1a;
+    flex-grow: 1;
+}
+
+.content-box, .work-item, .discord-v2-layout {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.work-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 30px;
+}
+
+.work-item:hover {
+    border-color: #333;
+    background: #111;
+    transform: translateX(10px);
+}
+
+.work-year {
+    font-weight: 900;
+    color: #222;
+    font-size: 1.5rem;
+}
+
+/* =========================================
+   5. SEKCJA DISCORD (WIDGET STYLE)
+   ========================================= */
+.discord-v2-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
     gap: 50px;
     align-items: center;
-    background: var(--card-bg);
-    padding: 40px;
-    border-radius: 2px;
-    border: 1px solid #222;
+    border: 1px solid #151515;
 }
 
-.discord-info h3 { font-size: 2rem; margin-bottom: 10px; }
-.discord-info p { color: var(--text-dim); margin-bottom: 30px; max-width: 400px; }
+.discord-widget-wrapper {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border-radius: 8px;
+    overflow: hidden;
+    user-select: none; /* Blokada kopiowania w obrębie kontenera */
+}
 
-.btn-white {
-    padding: 15px 40px;
-    background: var(--accent);
+.discord-v2-text h3 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.discord-v2-text p {
+    color: var(--text-gray);
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.v2-btn {
+    display: inline-block;
+    padding: 18px 40px;
+    background: var(--accent-white);
     color: black;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     transition: 0.3s;
 }
 
-.btn-white:hover {
-    background: transparent;
-    color: white;
-    box-shadow: inset 0 0 0 1px white;
+.v2-btn:hover {
+    background: #cccccc;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
 }
 
-/* Glass Card */
-.glass-card {
-    background: var(--card-bg);
-    padding: 60px;
-    border: 1px solid #222;
-    max-width: 800px;
-    width: 90%;
+/* =========================================
+   6. KONTAKT I FOOTER
+   ========================================= */
+.contact-minimal-box {
+    text-align: center;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 100px;
 }
 
-.title-white {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    letter-spacing: 10px;
+.contact-minimal-box p {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 20px 0;
+    letter-spacing: -1px;
 }
 
-.stats-row {
+.social-icons-v2 {
     display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
-    border-top: 1px solid #222;
-    padding-top: 30px;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
-.stat span { font-size: 1.5rem; font-weight: 700; }
-.stat p { color: var(--text-dim); font-size: 0.7rem; text-transform: uppercase; }
+.social-icons-v2 a {
+    color: var(--text-gray);
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
 
-#particles-js {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1;
+.social-icons-v2 a:hover {
+    color: var(--accent-white);
+}
+
+.v2-footer {
+    text-align: center;
+    padding: 60px 0;
+    font-size: 0.6rem;
+    color: #333;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Responsywność */
+@media (max-width: 900px) {
+    .discord-v2-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .discord-widget-wrapper {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .work-item { flex-direction: column; text-align: center; gap: 10px; }
 }
 
 @media (max-width: 768px) {
