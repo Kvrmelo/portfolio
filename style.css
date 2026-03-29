@@ -1,113 +1,164 @@
-/* =========================================
-   STYLE RESET & BASE
-   ========================================= */
-:root {
-    --black: #050505;
-    --dark-grey: #111111;
-    --accent: #ffffff;
-    --dim: #666666;
-    --glass: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.1);
-}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karmelo | Official Actor & Creator Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="elite-dark-theme">
 
-body {
-    background-color: var(--black);
-    color: var(--accent);
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-}
+    <div id="particles-js"></div>
+    <div class="cursor-follower"></div> <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
 
-#particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; }
+    <div class="menu-trigger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <nav id="side-menu" class="glass-menu">
+        <div class="close-btn" onclick="toggleMenu()">×</div>
+        <div class="menu-items">
+            <a href="#home" onclick="toggleMenu()">START</a>
+            <a href="#about" onclick="toggleMenu()">O MNIE</a>
+            <a href="#experience" onclick="toggleMenu()">PORTFOLIO</a>
+            <a href="#shorts" onclick="toggleMenu()">SHORTSY</a>
+            <a href="#contact" onclick="toggleMenu()">KONTAKT</a>
+        </div>
+    </nav>
 
-/* =========================================
-   NAVIGATION (GLASS)
-   ========================================= */
-.glass-nav {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 0;
-}
-.nav-content {
-    max-width: 1200px; margin: 0 auto; display: flex;
-    justify-content: space-between; align-items: center; padding: 0 40px;
-}
-.nav-logo { font-weight: 900; letter-spacing: 5px; font-size: 1.2rem; }
-.nav-links a {
-    color: var(--dim); text-decoration: none; margin-left: 30px;
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
-    transition: 0.3s;
-}
-.nav-links a:hover { color: var(--accent); text-shadow: 0 0 10px white; }
+    <header class="hero-v5" id="home">
+        <div class="hero-content">
+            <div class="avatar-glow-wrapper">
+                <div class="main-glow"></div>
+                <img src="profil.jpg" alt="Karmelo" class="profile-pic">
+                <div class="online-tag">ONLINE</div>
+            </div>
 
-/* =========================================
-   HERO SECTION (LUXURY)
-   ========================================= */
-.hero-section {
-    height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
-    z-index: 1; text-align: center;
-}
-.avatar-box { position: relative; margin-bottom: 30px; }
-.profile-img-v3 {
-    width: 200px; height: 200px; border-radius: 50%;
-    border: 1px solid var(--border); padding: 10px; background: var(--black);
-}
-.avatar-glow {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 250px; height: 250px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-}
-.hero-title { font-size: 5rem; font-weight: 900; letter-spacing: -2px; line-height: 1; }
-.hero-title .accent { color: white; -webkit-text-stroke: 1px rgba(255,255,255,0.3); color: transparent; }
-.stats-row { display: flex; gap: 40px; justify-content: center; margin-top: 40px; }
-.stat-card { background: var(--glass); padding: 20px 30px; border: 1px solid var(--border); border-radius: 15px; }
-.stat-card strong { display: block; font-size: 1.5rem; }
-.stat-card span { font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 1px; }
+            <h1 class="glitch-title">Siema, tu <span class="highlight">Karmelo</span></h1>
+            <p class="hero-tags">Aktor • Content Creator • Pianista</p>
 
-/* =========================================
-   CARDS & SECTIONS
-   ========================================= */
-.section-v3 { padding: 120px 10%; position: relative; z-index: 1; }
-.section-header { font-size: 1rem; letter-spacing: 10px; color: var(--dim); margin-bottom: 60px; display: flex; align-items: center; gap: 20px; }
-.section-header .line { height: 1px; background: var(--border); flex-grow: 1; }
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="num">2025</span>
+                    <span class="lab">Global Ad</span>
+                </div>
+                <div class="stat-box">
+                    <span class="num">100%</span>
+                    <span class="lab">Pasji</span>
+                </div>
+                <div class="stat-box">
+                    <span class="num">PRO</span>
+                    <span class="lab">Montaż</span>
+                </div>
+            </div>
 
-.portfolio-grid-v3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.p-card-v3 {
-    background: var(--dark-grey); padding: 50px 30px; border-radius: 20px;
-    border: 1px solid var(--border); transition: 0.4s ease;
-}
-.p-card-v3:hover { border-color: white; transform: translateY(-10px); }
-.p-card-v3 i { font-size: 2.5rem; margin-bottom: 20px; opacity: 0.5; }
+            <div class="social-actions">
+                <a href="https://youtube.com/@kvrmelo" class="s-link yt" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://tiktok.com/@kvrmelo" class="s-link tt" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://instagram.com/kvrmelo" class="s-link ig" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://twitch.tv/kvrmelo" class="s-link tw" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
+            </div>
+        </div>
+    </header>
 
-/* =========================================
-   FORMULARZ I KONTAKT
-   ========================================= */
-.contact-grid-v3 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
-.form-container-v3 input, .form-container-v3 textarea {
-    width: 100%; background: var(--dark-grey); border: 1px solid var(--border);
-    padding: 20px; margin-bottom: 15px; border-radius: 10px; color: white; outline: none;
-}
-.form-container-v3 input:focus { border-color: white; }
-.btn-v3 {
-    width: 100%; padding: 20px; background: white; color: black; border: none;
-    font-weight: 900; letter-spacing: 2px; cursor: pointer; border-radius: 10px;
-}
-.dc-card-v3 {
-    background: #5865F2; padding: 40px; border-radius: 20px; display: flex;
-    align-items: center; gap: 30px; cursor: pointer; transition: 0.3s;
-}
-.dc-card-v3:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(88,101,242,0.3); }
-.dc-card-v3 i { font-size: 3rem; }
+    <section class="section-container" id="about">
+        <h2 class="v5-title">O mnie</h2>
+        <div class="about-glass-card">
+            <p>Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. Z powodzeniem łączę warsztat aktorski z obyciem medialnym i technicznymi umiejętnościami montażu.</p>
+            <p>Moje doświadczenie to nie tylko YouTube (@kvrmelo), ale także występy na deskach teatru Roma oraz udział w globalnych reklamach (np. Sodastream 2025).</p>
+            <div class="skill-pills">
+                <span>#Aktorstwo</span><span>#MontażWideo</span><span>#Pianino</span><span>#ContentCreation</span>
+            </div>
+        </div>
+    </section>
 
-/* =========================================
-   SHORTSY
-   ========================================= */
-.shorts-container-v3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.short-frame { aspect-ratio: 9/16; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
-.short-frame iframe { width: 100%; height: 100%; }
+    <section class="section-container" id="experience">
+        <h2 class="v5-title">Doświadczenie</h2>
+        <div class="portfolio-grid-v5">
+            <div class="portfolio-item">
+                <i class="fas fa-ad icon-glow"></i>
+                <h3>Sodastream</h3>
+                <p>Globalna reklama (2025)</p>
+            </div>
+            <div class="portfolio-item">
+                <i class="fas fa-tv icon-glow"></i>
+                <h3>Tatuśkowie</h3>
+                <p>Serial Polsat (odc. 50)</p>
+            </div>
+            <div class="portfolio-item">
+                <i class="fas fa-theater-masks icon-glow"></i>
+                <h3>Teatr Roma</h3>
+                <p>Spektakl musicalowy</p>
+            </div>
+            <div class="portfolio-item">
+                <i class="fas fa-award icon-glow"></i>
+                <h3>Nagroda</h3>
+                <p>1. miejsce - Stand-up</p>
+            </div>
+        </div>
+    </section>
 
-/* MOBILKA */
-@media (max-width: 768px) {
-    .hero-title { font-size: 3rem; }
-    .contact-grid-v3 { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-}
+    <section class="section-container" id="shorts">
+        <h2 class="v5-title">Moje Shortsy</h2>
+        <div class="shorts-grid-v5">
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/XQrDdlafN00" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/ID_TWOJEGO_FILMU_2" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/ID_TWOJEGO_FILMU_3" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="contact">
+        <div class="contact-cta">
+            <h2 class="v5-title">Współpraca</h2>
+            <div class="cta-buttons">
+                <button class="glow-btn main-btn" onclick="openContactForm()">
+                    <i class="fas fa-paper-plane"></i> Napisz wiadomość
+                </button>
+                
+                <div class="glow-btn discord-btn" onclick="copyDiscord()">
+                    <i class="fab fa-discord"></i>
+                    <div class="dc-info">
+                        <span class="dc-label">Discord</span>
+                        <span class="dc-user" id="dc-text">kvrmelo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact-modal" class="v5-modal">
+            <div class="modal-box">
+                <span class="close-v5" onclick="closeContactForm()">×</span>
+                <h3>Stwórzmy coś razem</h3>
+                <form id="contact-form" action="https://formspree.io/f/xqeyzypj" method="POST">
+                    <div class="input-row">
+                        <input type="text" name="name" placeholder="Imię / Nick" required>
+                        <input type="email" name="email" placeholder="E-mail" required>
+                    </div>
+                    <input type="text" name="subject" placeholder="Temat wiadomości">
+                    <textarea name="message" placeholder="Opisz swój projekt..." rows="5" required></textarea>
+                    <button type="submit" class="send-btn">Wyślij propozycję</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="v5-footer">
+        <p>&copy; 2026 KARMELO | Premium Creator Portfolio</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Tu wrzuć swój JS (toggleMenu, openContactForm, particlesJS, copyDiscord)
+    </script>
+</body>
+</html>
