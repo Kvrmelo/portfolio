@@ -6,7 +6,7 @@
     <title>Karmelo | Official Hub</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================
@@ -15,28 +15,22 @@
         :root {
             --bg: #030303;
             --glass: rgba(255, 255, 255, 0.02);
-            --glass-heavy: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.08);
             --glow: rgba(255, 255, 255, 0.4);
+            
+            /* POPRAWIONE KOLORY SOCIALI */
             --accent-yt: #ff0000;
             --accent-tw: #9146ff;
-            /* DODANE: Kolory dla TikToka i IG */
-            --accent-tt: #ff0050;
-            --accent-ig: #e1306c;
+            --accent-tt: #00f2fe; /* Cyjanowy dla TikToka */
+            --accent-ig: #c13584; /* Fioletowo-różowy dla Instagrama */
+            --accent-dc: #5865F2; /* Dodano zmienną Discorda */
         }
 
-        /* DODANE: Customowy Scrollbar "Glow Kulka" */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000; 
-            border-left: 1px solid var(--border);
-        }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #000; border-left: 1px solid var(--border); }
         ::-webkit-scrollbar-thumb {
             background: radial-gradient(circle, #fff 10%, rgba(255,255,255,0.3) 60%, transparent 100%);
-            border-radius: 50px;
-            border: 2px solid #000;
+            border-radius: 50px; border: 2px solid #000;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
         }
         ::-webkit-scrollbar-thumb:hover {
@@ -54,54 +48,58 @@
             overflow-x: hidden;
         }
 
-        /* Ambient Background */
         .ambient-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, rgba(255,255,255,0.08) 0%, transparent 50%),
+            background: radial-gradient(circle at 50% -20%, rgba(255,255,255,0.05) 0%, transparent 50%),
                         radial-gradient(circle at 0% 100%, rgba(145,70,255,0.03) 0%, transparent 40%);
             z-index: -1;
         }
 
         /* =========================================
-           2. NAWIGACJA (FLOATING GLASS)
+           2. NAWIGACJA (EFEKT ŚWIATŁA)
            ========================================= */
         .top-nav {
             position: fixed;
-            top: 25px; left: 50%;
+            top: 0; left: 50%;
             transform: translateX(-50%);
-            background: var(--glass-heavy);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--border);
-            padding: 10px 25px;
-            border-radius: 100px;
+            /* Nowy efekt świetlny zamiast piguły */
+            background: radial-gradient(ellipse at top, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding: 20px 50px 30px 50px;
             z-index: 1000;
-            display: flex; gap: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex; gap: 35px;
+            width: 100%;
+            max-width: 600px;
+            justify-content: center;
         }
 
         .top-nav a {
-            color: #777; text-decoration: none; font-size: 10px;
-            font-weight: 700; letter-spacing: 2px; transition: 0.3s;
+            color: #888; text-decoration: none; font-size: 11px;
+            font-weight: 500; letter-spacing: 3px; transition: 0.3s;
+            text-transform: uppercase;
         }
 
-        .top-nav a:hover { color: white; text-shadow: 0 0 10px white; }
+        .top-nav a:hover { 
+            color: white; 
+            text-shadow: 0 0 15px rgba(255,255,255,0.8); 
+        }
 
         /* =========================================
-           3. HERO SECTION (AVATAR & STATS)
+           3. HERO SECTION (ZMNIEJSZONY NAPIS)
            ========================================= */
         .hero {
             height: 100vh;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             text-align: center; padding: 20px;
+            margin-top: 20px;
         }
 
         .avatar-box {
             position: relative;
-            width: 160px; height: 160px;
-            margin-bottom: 30px;
+            width: 140px; height: 140px; /* Nieco mniejszy, subtelniejszy */
+            margin-bottom: 25px;
             animation: float 6s ease-in-out infinite;
         }
 
@@ -112,46 +110,45 @@
 
         .profile-img {
             width: 100%; height: 100%;
-            border-radius: 50%; border: 1px solid white;
-            box-shadow: 0 0 50px rgba(255,255,255,0.15);
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 40px rgba(255,255,255,0.1);
             object-fit: cover;
         }
 
         .status-dot {
-            position: absolute; bottom: 8px; right: 12px;
+            position: absolute; bottom: 8px; right: 8px;
             background: #00ff00; color: black;
             font-size: 8px; font-weight: 900;
-            padding: 2px 8px; border-radius: 20px;
+            padding: 3px 8px; border-radius: 20px;
             box-shadow: 0 0 15px #00ff00;
         }
 
-        /* POPRAWIONE: Napis wygląda teraz o wiele lepiej, w stylu 3D/Gradient */
+        /* Uspokojony, minimalistyczny napis */
         h1 { 
-            font-size: clamp(3rem, 10vw, 5rem); 
-            font-weight: 900; 
-            letter-spacing: -3px; 
-            line-height: 1.1; 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-weight: 800; 
+            letter-spacing: -1px; 
+            line-height: 1.2; 
             text-transform: uppercase;
-            background: linear-gradient(to bottom, #ffffff 30%, #666666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.6));
+            color: #ccc;
         }
         h1 span { 
-            background: linear-gradient(to right, #ffffff, #aaaaaa);
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            background: linear-gradient(to right, #ffffff, #888888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px var(--glow); 
+            text-shadow: 0 0 25px rgba(255,255,255,0.15); 
+            display: block;
         }
 
         .hero-stats {
-            display: flex; gap: 25px; margin: 30px 0;
+            display: flex; gap: 40px; margin: 30px 0;
             background: var(--glass);
-            padding: 15px 30px; border-radius: 20px;
+            padding: 20px 40px; border-radius: 20px;
             border: 1px solid var(--border);
         }
-        .stat-item b { font-size: 1.5rem; display: block; }
-        .stat-item span { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-item b { font-size: 1.4rem; display: block; color: #fff;}
+        .stat-item span { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; }
 
         /* =========================================
            4. PRZYCISKI (SOCIALS)
@@ -160,121 +157,103 @@
         .btn-social {
             background: var(--glass);
             border: 1px solid var(--border);
-            color: white; padding: 10px 20px;
+            color: white; padding: 12px 22px;
             border-radius: 12px; text-decoration: none;
-            font-size: 13px; font-weight: 700;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .btn-social:hover {
-            background: white; color: black;
-            transform: scale(1.05); box-shadow: 0 0 30px white;
-        }
+        .btn-social:hover { transform: translateY(-3px); background: #fff; color: #000; }
 
-        /* DODANE: Podświetlenia dla wszystkich ikon */
-        .btn-yt:hover { background: var(--accent-yt); color: white; box-shadow: 0 0 30px var(--accent-yt); }
-        .btn-tw:hover { background: var(--accent-tw); color: white; box-shadow: 0 0 30px var(--accent-tw); }
-        .btn-tt:hover { background: var(--accent-tt); color: white; box-shadow: 0 0 30px var(--accent-tt); }
-        .btn-ig:hover { background: var(--accent-ig); color: white; box-shadow: 0 0 30px var(--accent-ig); }
+        /* Kolory po najechaniu */
+        .btn-yt:hover { background: var(--accent-yt); color: white; border-color: var(--accent-yt); box-shadow: 0 5px 20px rgba(255,0,0,0.4); }
+        .btn-tw:hover { background: var(--accent-tw); color: white; border-color: var(--accent-tw); box-shadow: 0 5px 20px rgba(145,70,255,0.4); }
+        .btn-tt:hover { background: var(--accent-tt); color: black; border-color: var(--accent-tt); box-shadow: 0 5px 20px rgba(0,242,254,0.4); }
+        .btn-ig:hover { background: var(--accent-ig); color: white; border-color: var(--accent-ig); box-shadow: 0 5px 20px rgba(193,53,132,0.4); }
 
         /* =========================================
-           5. SEKTY PORTFOLIO & SHORTS
+           5. RESZTA STRONY (PORTFOLIO, KONTAKT)
            ========================================= */
         section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; opacity: 0; transform: translateY(30px); transition: 1s; }
         section.visible { opacity: 1; transform: translateY(0); }
 
-        h2 { font-size: 1.5rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; text-align: center; color: #444; }
+        h2 { font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; text-align: center; color: #666; }
 
-        .glass-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 30px; border-radius: 30px;
-            backdrop-filter: blur(20px);
-        }
+        .glass-card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 20px; }
 
-        .grid-experience {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
+        .grid-experience { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .exp-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.03), transparent);
+            background: linear-gradient(145deg, rgba(255,255,255,0.02), transparent);
             border: 1px solid var(--border);
             padding: 30px; border-radius: 20px; transition: 0.3s;
         }
-        .exp-card:hover { border-color: white; background: rgba(255,255,255,0.05); }
+        .exp-card:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); }
 
-        .shorts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-        }
+        .shorts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
         .short-item {
-            aspect-ratio: 9/16;
-            border-radius: 25px; overflow: hidden;
-            border: 1px solid var(--border);
-            background: #000;
-            transition: 0.4s;
+            aspect-ratio: 9/16; border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border); background: #000; transition: 0.4s;
         }
-        .short-item:hover { transform: scale(1.02); border-color: var(--glow); box-shadow: 0 0 30px rgba(255,255,255,0.1); }
+        .short-item:hover { transform: translateY(-10px); border-color: var(--glow); box-shadow: 0 15px 30px rgba(0,0,0,0.8); }
         .short-item iframe { width: 100%; height: 100%; border: none; }
 
-        /* =========================================
-           6. DISCORD & KONTAKT (NOWY DESIGN)
-           ========================================= */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .discord-box {
-            background: linear-gradient(145deg, #1a1c3a, #050505);
-            border: 1px solid var(--accent-dc);
-            padding: 40px; border-radius: 30px;
-            text-align: center; display: flex; flex-direction: column; justify-content: center;
+            background: linear-gradient(145deg, #12131c, #050505);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            padding: 40px; border-radius: 20px; text-align: center;
+            display: flex; flex-direction: column; justify-content: center;
         }
-
-        .dc-icon { font-size: 3rem; color: var(--accent-dc); margin-bottom: 15px; text-shadow: 0 0 20px var(--accent-dc); }
-
-        .form-container {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 30px; border-radius: 30px;
-            /* DODANE: Lepszy efekt oddzielnej karty */
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
+        .dc-icon { font-size: 3rem; color: var(--accent-dc); margin-bottom: 15px; text-shadow: 0 0 20px rgba(88, 101, 242, 0.5); }
+        
+        .form-container { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 20px; }
         input, textarea {
-            width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            padding: 15px; margin-bottom: 15px; color: white; border-radius: 15px;
+            width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border);
+            padding: 15px; margin-bottom: 15px; color: white; border-radius: 12px;
             font-family: inherit; transition: 0.3s;
         }
-
-        input:focus, textarea:focus {
-            outline: none; border-color: white; background: rgba(255,255,255,0.08);
-        }
-
+        input:focus, textarea:focus { outline: none; border-color: white; background: rgba(255,255,255,0.05); }
         .submit-btn {
             width: 100%; padding: 15px; background: white; color: black;
-            border: none; border-radius: 15px; font-weight: 900; 
-            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
-            transition: 0.3s;
+            border: none; border-radius: 12px; font-weight: 800; 
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
         }
-
-        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); }
+        .submit-btn:hover { background: #ddd; transform: translateY(-2px); }
 
         /* =========================================
-           7. RESPONSYWNOŚĆ (MOBILE FIX)
+           6. RESPONSIVE / MOBILE FIXES
            ========================================= */
         @media (max-width: 768px) {
+            .top-nav {
+                padding: 15px 20px 20px 20px;
+                gap: 15px;
+                background: radial-gradient(ellipse at top, rgba(255,255,255,0.1) 0%, transparent 80%);
+            }
+            .top-nav a { font-size: 9px; letter-spacing: 1px; }
+            
+            .hero { padding-top: 80px; }
+            .avatar-box { width: 110px; height: 110px; }
+            
+            /* Naprawa rozjeżdżających się statystyk na telefonie */
+            .hero-stats {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px 30px;
+                width: 90%;
+                max-width: 300px;
+            }
+            .stat-item { 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+                padding-bottom: 10px;
+            }
+            .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .stat-item b { font-size: 1.2rem; }
+
             .contact-wrapper { grid-template-columns: 1fr; }
-            .top-nav { width: 90%; justify-content: center; font-size: 9px; }
-            .hero-stats { gap: 15px; padding: 10px 15px; }
-            h1 { font-size: 3rem; }
-            .shorts-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+            .shorts-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
         }
     </style>
 </head>
@@ -294,7 +273,7 @@
             <img src="profil.jpg" alt="Karmelo" class="profile-img">
             <div class="status-dot">ONLINE</div>
         </div>
-        <h1>SIEMA, TU <br><span>KARMELO</span></h1>
+        <h1>SIEMA, TU <span>KARMELO</span></h1>
         
         <div class="hero-stats">
             <div class="stat-item"><b>2025</b><span>Global Ad</span></div>
@@ -313,8 +292,8 @@
     <section id="about">
         <h2>O mnie</h2>
         <div class="glass-card">
-            <p style="font-size: 1.1rem; text-align: center; color: #ccc;">
-                Nazywam się <strong>Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. 
+            <p style="font-size: 1.1rem; text-align: center; color: #aaa;">
+                Nazywam się <strong style="color: white;">Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. 
                 Łączę warsztat aktorski z nowoczesnym montażem.
             </p>
         </div>
@@ -324,19 +303,19 @@
         <h2>Doświadczenie</h2>
         <div class="grid-experience">
             <div class="exp-card">
-                <i class="fas fa-ad" style="margin-bottom:15px; color:#555;"></i>
-                <h3>Sodastream</h3>
-                <p style="color:#666">Globalna reklama (2025)</p>
+                <i class="fas fa-ad" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
+                <h3 style="margin-bottom: 5px;">Sodastream</h3>
+                <p style="color:#888; font-size: 14px;">Globalna reklama (2025)</p>
             </div>
             <div class="exp-card">
-                <i class="fas fa-tv" style="margin-bottom:15px; color:#555;"></i>
-                <h3>Tatuśkowie</h3>
-                <p style="color:#666">Serial Polsat</p>
+                <i class="fas fa-tv" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
+                <h3 style="margin-bottom: 5px;">Tatuśkowie</h3>
+                <p style="color:#888; font-size: 14px;">Serial Polsat</p>
             </div>
             <div class="exp-card">
-                <i class="fas fa-masks-theater" style="margin-bottom:15px; color:#555;"></i>
-                <h3>Teatr Roma</h3>
-                <p style="color:#666">Spektakle muzyczne</p>
+                <i class="fas fa-masks-theater" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
+                <h3 style="margin-bottom: 5px;">Teatr Roma</h3>
+                <p style="color:#888; font-size: 14px;">Spektakle muzyczne</p>
             </div>
         </div>
     </section>
@@ -356,26 +335,25 @@
             <div class="discord-box">
                 <div class="dc-icon"><i class="fab fa-discord"></i></div>
                 <h3 style="margin-bottom: 10px;">Dołącz do Discorda</h3>
-                <code style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; margin-bottom: 20px; color: var(--accent-dc);">kvrmelo</code>
-                <a href="#" id="copy-dc" class="btn-social" style="justify-content: center;">Kopiuj Nick</a>
+                <code style="background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; margin-bottom: 25px; color: var(--accent-dc); font-size: 1.1rem;">kvrmelo</code>
+                <a href="#" id="copy-dc" class="btn-social" style="width: 80%; margin: 0 auto;">Kopiuj Nick</a>
             </div>
 
             <div class="form-container">
                 <form action="https://formspree.io/f/xqeyzypj" method="POST" target="_blank">
                     <input type="email" name="email" placeholder="Twój Adres E-mail" required>
-                    <textarea name="message" rows="4" placeholder="Opisz swój projekt..." required></textarea>
+                    <textarea name="message" rows="5" placeholder="Opisz swój projekt..." required></textarea>
                     <button type="submit" class="submit-btn">Wyślij Wiadomość</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 50px; text-align: center; color: #333; font-size: 10px; letter-spacing: 2px;">
-        © 2026 KARMELO | ALL RIGHTS RESERVED
+    <footer style="padding: 40px; text-align: center; color: #444; font-size: 11px; letter-spacing: 2px;">
+        © 2026 KARMELO | Wszelkie prawa zastrzeżone
     </footer>
 
     <script>
-        // Animacja pojawiania się sekcji przy skrolowaniu
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -388,9 +366,8 @@
             observer.observe(section);
         });
 
-        // DODANE: Działające kopiowanie Nicku z Discorda
         document.getElementById('copy-dc').addEventListener('click', function(e) {
-            e.preventDefault(); // Blokuje przeładowanie strony po kliknięciu w link href="#"
+            e.preventDefault();
             navigator.clipboard.writeText('kvrmelo').then(() => {
                 const btn = this;
                 const originalText = btn.innerHTML;
@@ -403,7 +380,7 @@
                     btn.innerHTML = originalText;
                     btn.style.background = 'var(--glass)';
                     btn.style.color = 'white';
-                }, 2000); // Wróci do normy po 2 sekundach
+                }, 2000);
             });
         });
     </script>
