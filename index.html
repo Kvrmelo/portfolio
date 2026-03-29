@@ -1,70 +1,240 @@
-<body class="dark-theme">
-    <div id="particles-js"></div>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARMELO | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* STYLIZACJA WG ZDJĘCIA - DARK & WHITE GLOW */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
-    <nav class="navbar">
-        <div class="nav-logo">KARMELO</div>
+        :root {
+            --bg: #050505;
+            --card-bg: #0d0d0d;
+            --accent: #ffffff;
+            --text-gray: #888888;
+            --glow: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--accent); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* TŁO Z DELIKATNYM BLASKIEM */
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* NAWIGACJA */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 10%;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+        .logo { font-weight: 900; letter-spacing: 8px; font-size: 1.2rem; }
+        .nav-links a { 
+            color: var(--text-gray); 
+            text-decoration: none; 
+            margin-left: 30px; 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff 50%, #444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            color: var(--text-gray);
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        .hero-line {
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            margin-top: 50px;
+        }
+
+        /* SEKCJE */
+        .section {
+            padding: 100px 10%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .section-title {
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .section-title::after { content: ""; height: 1px; background: #222; flex-grow: 1; }
+
+        /* KARTY / GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            padding: 40px;
+            border-radius: 4px; /* Ostre krawędzie jak na zdjęciu */
+            transition: 0.4s;
+        }
+        .card:hover {
+            border-color: #444;
+            box-shadow: 0 0 30px rgba(255,255,255,0.03);
+            transform: translateY(-5px);
+        }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 700; }
+        .card p { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* DISCORD WIDGET - NIE DO SKOPIOWANIA */
+        .discord-section {
+            display: flex;
+            gap: 40px;
+            background: #080808;
+            border: 1px solid #111;
+            padding: 50px;
+            align-items: center;
+            border-radius: 8px;
+        }
+        .discord-iframe-container {
+            flex-shrink: 0;
+            user-select: none; /* Blokada zaznaczania */
+            pointer-events: auto;
+        }
+        .discord-info h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .btn-discord {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 35px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .btn-discord:hover { background: var(--accent); color: #000; }
+
+        /* FOOTER */
+        footer {
+            padding: 100px 10% 50px;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .discord-section { flex-direction: column; text-align: center; padding: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <nav>
+        <div class="logo">KARMELO</div>
         <div class="nav-links">
-            <a href="#home">Start</a>
-            <a href="#about">O mnie</a>
-            <a href="#discord">Community</a>
-            <a href="#contact">Kontakt</a>
+            <a href="#home">Home</a>
+            <a href="#about">Profile</a>
+            <a href="#discord">Discord</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <header class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="glimmer-text">KORNEL WEROŃSKI</h1>
-            <p class="subtitle">ACTOR • CREATOR • PIANIST</p>
-            <div class="hero-line"></div>
-        </div>
+        <p>Portfolio MMXVI</p>
+        <h1>KORNEL WEROŃSKI</h1>
+        <p>Actor • Creator • Pianist</p>
+        <div class="hero-line"></div>
     </header>
 
     <section class="section" id="about">
-        <div class="glass-card">
-            <h2 class="title-white">O MNIE</h2>
-            <p>Łączę świat klasycznego aktorstwa z nowoczesnym contentem. Moja twórczość to precyzja, estetyka i profesjonalizm w każdym kadrze.</p>
-            <div class="stats-row">
-                <div class="stat"><span>2025</span><p>Global Project</p></div>
-                <div class="stat"><span>HQ</span><p>Video Edit</p></div>
-                <div class="stat"><span>ROMA</span><p>Theatre</p></div>
+        <h2 class="section-title">Experience</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>SODASTREAM</h3>
+                <p>Global campaign 2025. Main role in international commercial production.</p>
+            </div>
+            <div class="card">
+                <h3>TEATR ROMA</h3>
+                <p>Musical performances and professional stage acting experience.</p>
+            </div>
+            <div class="card">
+                <h3>POLSAT TV</h3>
+                <p>Featured appearance in "Tatuśkowie" (Ep. 50) and other TV projects.</p>
             </div>
         </div>
     </section>
 
     <section class="section" id="discord">
-        <h2 class="title-white">DOŁĄCZ DO SERWERA</h2>
-        <div class="discord-container">
-            <iframe src="https://discord.com/widget?id=TWOJE_ID_SERWERA&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+        <h2 class="section-title">Community</h2>
+        <div class="discord-section">
+            <div class="discord-iframe-container">
+                <iframe src="https://discord.com/widget?id=TWOJE_ID_SERWERA&theme=dark" width="350" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            </div>
             <div class="discord-info">
-                <h3>VIBE CHECK</h3>
-                <p>Nasza społeczność to miejsce dla twórców i ludzi z pasją. Zero spamu, czysty feedback i wspólne projekty.</p>
-                <a href="https://discord.gg/TWÓJ_LINK" class="btn-white">WEJDŹ NA SERWER</a>
+                <h2>PRIVATE SERVER</h2>
+                <p>Dołącz do mojego serwera Discord. Miejsce dla twórców, newsy o projektach i wspólny montaż. Dostęp tylko dla osób z linkiem.</p>
+                <a href="https://discord.gg/TWÓJ_LINK" class="btn-discord">JOIN THE HUB</a>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="social-mini">
-            <a href="#">YT</a>
-            <a href="#">IG</a>
-            <a href="#">TT</a>
-        </div>
-        <p>&copy; 2026 KARMELO. All rights reserved.</p>
+    <footer id="contact">
+        <p>BUSINESS.KARMELO@GMAIL.COM</p>
+        <p style="margin-top: 20px;">&copy; 2026 KARMELO. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 40 },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.2 },
-                "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.1, "width": 1 },
-                "move": { "enable": true, "speed": 1 }
-            }
-        });
+</body>
+</html>
     </script>
 </body>
 
