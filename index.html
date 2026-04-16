@@ -18,24 +18,36 @@
             --border: rgba(255, 255, 255, 0.08);
             --glow: rgba(255, 255, 255, 0.4);
             
-            /* POPRAWIONE KOLORY SOCIALI */
             --accent-yt: #ff0000;
             --accent-tw: #9146ff;
-            --accent-tt: #00f2fe; /* Cyjanowy dla TikToka */
-            --accent-ig: #c13584; /* Fioletowo-różowy dla Instagrama */
-            --accent-dc: #5865F2; /* Dodano zmienną Discorda */
+            --accent-tt: #00f2fe; 
+            --accent-ig: #c13584; 
+            --accent-dc: #5865F2; 
         }
 
-        ::-webkit-scrollbar { width: 12px; }
-        ::-webkit-scrollbar-track { background: #000; border-left: 1px solid var(--border); }
+        /* POPRAWIONY SUWAK: PŁYNNE ŚWIECĄCE SZKŁO */
+        ::-webkit-scrollbar { 
+            width: 8px; 
+        }
+        ::-webkit-scrollbar-track { 
+            background: rgba(0,0,0,0.9); 
+        }
         ::-webkit-scrollbar-thumb {
-            background: radial-gradient(circle, #fff 10%, rgba(255,255,255,0.3) 60%, transparent 100%);
-            border-radius: 50px; border: 2px solid #000;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            background: linear-gradient(180deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.8) 50%, 
+                rgba(255,255,255,0.1) 100%);
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), inset 0 0 5px rgba(255,255,255,0.8);
+            border: 2px solid transparent;
+            background-clip: padding-box;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: radial-gradient(circle, #fff 30%, rgba(255,255,255,0.6) 80%, transparent 100%);
-            box-shadow: 0 0 25px #fff;
+            background: linear-gradient(180deg, 
+                rgba(255,255,255,0.3) 0%, 
+                rgba(255,255,255,1) 50%, 
+                rgba(255,255,255,0.3) 100%);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
@@ -56,6 +68,17 @@
             z-index: -1;
         }
 
+        /* STYLE DLA DESZCZU PIKSELI */
+        #pixel-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         /* =========================================
            2. NAWIGACJA (EFEKT ŚWIATŁA)
            ========================================= */
@@ -63,7 +86,6 @@
             position: fixed;
             top: 0; left: 50%;
             transform: translateX(-50%);
-            /* Nowy efekt świetlny zamiast piguły */
             background: radial-gradient(ellipse at top, rgba(255,255,255,0.15) 0%, transparent 70%);
             border-top: 1px solid rgba(255,255,255,0.2);
             padding: 20px 50px 30px 50px;
@@ -86,7 +108,7 @@
         }
 
         /* =========================================
-           3. HERO SECTION (ZMNIEJSZONY NAPIS)
+           3. HERO SECTION
            ========================================= */
         .hero {
             height: 100vh;
@@ -94,11 +116,13 @@
             align-items: center; justify-content: center;
             text-align: center; padding: 20px;
             margin-top: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .avatar-box {
             position: relative;
-            width: 140px; height: 140px; /* Nieco mniejszy, subtelniejszy */
+            width: 140px; height: 140px;
             margin-bottom: 25px;
             animation: float 6s ease-in-out infinite;
         }
@@ -123,7 +147,6 @@
             box-shadow: 0 0 15px #00ff00;
         }
 
-        /* Uspokojony, minimalistyczny napis */
         h1 { 
             font-size: clamp(2rem, 5vw, 3.5rem); 
             font-weight: 800; 
@@ -165,16 +188,15 @@
 
         .btn-social:hover { transform: translateY(-3px); background: #fff; color: #000; }
 
-        /* Kolory po najechaniu */
         .btn-yt:hover { background: var(--accent-yt); color: white; border-color: var(--accent-yt); box-shadow: 0 5px 20px rgba(255,0,0,0.4); }
         .btn-tw:hover { background: var(--accent-tw); color: white; border-color: var(--accent-tw); box-shadow: 0 5px 20px rgba(145,70,255,0.4); }
         .btn-tt:hover { background: var(--accent-tt); color: black; border-color: var(--accent-tt); box-shadow: 0 5px 20px rgba(0,242,254,0.4); }
         .btn-ig:hover { background: var(--accent-ig); color: white; border-color: var(--accent-ig); box-shadow: 0 5px 20px rgba(193,53,132,0.4); }
 
         /* =========================================
-           5. RESZTA STRONY (PORTFOLIO, KONTAKT)
+           5. RESZTA STRONY
            ========================================= */
-        section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; opacity: 0; transform: translateY(30px); transition: 1s; }
+        section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; opacity: 0; transform: translateY(30px); transition: 1s; position: relative; z-index: 1;}
         section.visible { opacity: 1; transform: translateY(0); }
 
         h2 { font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; text-align: center; color: #666; }
@@ -220,38 +242,15 @@
         }
         .submit-btn:hover { background: #ddd; transform: translateY(-2px); }
 
-        /* =========================================
-           6. RESPONSIVE / MOBILE FIXES
-           ========================================= */
         @media (max-width: 768px) {
-            .top-nav {
-                padding: 15px 20px 20px 20px;
-                gap: 15px;
-                background: radial-gradient(ellipse at top, rgba(255,255,255,0.1) 0%, transparent 80%);
-            }
+            .top-nav { padding: 15px 20px 20px 20px; gap: 15px; }
             .top-nav a { font-size: 9px; letter-spacing: 1px; }
-            
             .hero { padding-top: 80px; }
             .avatar-box { width: 110px; height: 110px; }
-            
-            /* Naprawa rozjeżdżających się statystyk na telefonie */
-            .hero-stats {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px 30px;
-                width: 90%;
-                max-width: 300px;
-            }
-            .stat-item { 
-                display: flex; 
-                justify-content: space-between; 
-                align-items: center; 
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-                padding-bottom: 10px;
-            }
+            .hero-stats { flex-direction: column; gap: 15px; padding: 20px 30px; width: 90%; max-width: 300px; }
+            .stat-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
             .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
             .stat-item b { font-size: 1.2rem; }
-
             .contact-wrapper { grid-template-columns: 1fr; }
             .shorts-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
         }
@@ -259,6 +258,7 @@
 </head>
 <body>
 
+    <canvas id="pixel-canvas"></canvas>
     <div class="ambient-bg"></div>
 
     <nav class="top-nav">
@@ -349,11 +349,56 @@
         </div>
     </section>
 
-    <footer style="padding: 40px; text-align: center; color: #444; font-size: 11px; letter-spacing: 2px;">
+    <footer style="padding: 40px; text-align: center; color: #444; font-size: 11px; letter-spacing: 2px; position: relative; z-index: 1;">
         © 2026 KARMELO | Wszelkie prawa zastrzeżone
     </footer>
 
     <script>
+        /* SCRIPT DLA DESZCZU PIKSELI */
+        const canvas = document.getElementById('pixel-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const pixels = [];
+        const pixelCount = 100;
+
+        class Pixel {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.speed = 2 + Math.random() * 5;
+                this.opacity = 0.1 + Math.random() * 0.5;
+            }
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fillRect(this.x, this.y, 1, 1);
+            }
+        }
+
+        for (let i = 0; i < pixelCount; i++) pixels.push(new Pixel());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            pixels.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        /* OBSERVER DLA SEKCJI */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -366,16 +411,15 @@
             observer.observe(section);
         });
 
+        /* KOPIOWANIE DISCORDA */
         document.getElementById('copy-dc').addEventListener('click', function(e) {
             e.preventDefault();
             navigator.clipboard.writeText('kvrmelo').then(() => {
                 const btn = this;
                 const originalText = btn.innerHTML;
-                
                 btn.innerHTML = 'Skopiowano!';
                 btn.style.background = 'white';
                 btn.style.color = 'black';
-                
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.style.background = 'var(--glass)';
