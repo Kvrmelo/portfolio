@@ -9,27 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* =========================================
-           1. ZMIENNE I FUNDAMENTY
-           ========================================= */
         :root {
             --bg: #030303;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.08);
-            --glow: rgba(255, 255, 255, 0.4);
-            
-            --accent-yt: #ff0000;
-            --accent-tw: #9146ff;
-            --accent-tt: #00f2fe; 
-            --accent-ig: #c13584; 
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
             --accent-dc: #5865F2; 
         }
 
-        /* UKRYWAMY STANDARDOWY SUWAK */
         ::-webkit-scrollbar { width: 0px; display: none; }
-        body { -ms-overflow-style: none; scrollbar-width: none; overflow-y: scroll; background: var(--bg); color: white; font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; margin: 0; padding: 0; scroll-behavior: smooth; }
+        body { -ms-overflow-style: none; scrollbar-width: none; overflow-y: scroll; background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* CIECZ NA CAŁY EKRAN */
+        /* =========================================
+           EFFECT: LIQUID GLASS (RTĘĆ/SZKŁO)
+           ========================================= */
         .liquid-container {
             position: fixed;
             top: 0; left: 0;
@@ -41,11 +33,13 @@
 
         .liquid-blob {
             position: absolute;
-            background: #fff;
+            /* Efekt szkła: półprzezroczystość + jasna krawędź */
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.4);
             border-radius: 50%;
             top: 0; left: 0;
             will-change: transform;
-            box-shadow: 0 0 15px rgba(255,255,255,0.4);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.1);
         }
 
         .ambient-bg {
@@ -56,133 +50,94 @@
             z-index: -1;
         }
 
-        #pixel-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+        #pixel-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
         /* =========================================
-           2. NAWIGACJA
+           NAV & HERO
            ========================================= */
         .top-nav {
-            position: fixed;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
+            position: fixed; top: 0; left: 50%; transform: translateX(-50%);
             background: radial-gradient(ellipse at top, rgba(255,255,255,0.15) 0%, transparent 70%);
             border-top: 1px solid rgba(255,255,255,0.2);
-            padding: 20px 50px 30px 50px;
-            z-index: 1000;
-            display: flex; gap: 35px;
-            width: 100%; max-width: 600px;
-            justify-content: center;
+            padding: 20px 50px 30px 50px; z-index: 1000;
+            display: flex; gap: 35px; width: 100%; max-width: 600px; justify-content: center;
         }
 
-        .top-nav a {
-            color: #888; text-decoration: none; font-size: 11px;
-            font-weight: 500; letter-spacing: 3px; transition: 0.3s;
-            text-transform: uppercase;
-        }
-
+        .top-nav a { color: #888; text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: 3px; transition: 0.3s; text-transform: uppercase; }
         .top-nav a:hover { color: white; text-shadow: 0 0 15px rgba(255,255,255,0.8); }
 
-        /* =========================================
-           3. HERO SECTION
-           ========================================= */
-        .hero {
-            height: 100vh;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            text-align: center; padding: 20px;
-            position: relative; z-index: 1;
-        }
-
-        .avatar-box {
-            position: relative;
-            width: 140px; height: 140px;
-            margin-bottom: 25px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .profile-img {
-            width: 100%; height: 100%;
-            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 0 40px rgba(255,255,255,0.1);
-            object-fit: cover;
-        }
-
-        .status-dot {
-            position: absolute; bottom: 8px; right: 8px;
-            background: #00ff00; color: black;
-            font-size: 8px; font-weight: 900;
-            padding: 3px 8px; border-radius: 20px;
-            box-shadow: 0 0 15px #00ff00;
-        }
-
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; position: relative; z-index: 1; }
+        .avatar-box { position: relative; width: 140px; height: 140px; margin-bottom: 25px; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .profile-img { width: 100%; height: 100%; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); object-fit: cover; }
+        
         h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1px; text-transform: uppercase; color: #ccc; margin: 0; }
         h1 span { 
-            font-size: clamp(2.5rem, 7vw, 4.5rem);
-            background: linear-gradient(to right, #ffffff, #888888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
+            background: linear-gradient(to right, #fff, #666);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block;
         }
 
-        .hero-stats {
-            display: flex; gap: 40px; margin: 30px 0;
-            background: var(--glass);
-            padding: 20px 40px; border-radius: 20px;
-            border: 1px solid var(--border);
-        }
+        .hero-stats { display: flex; gap: 40px; margin: 30px 0; background: var(--glass); padding: 20px 40px; border-radius: 20px; border: 1px solid var(--border); }
         .stat-item b { font-size: 1.4rem; display: block; color: #fff;}
         .stat-item span { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; }
 
-        .socials { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .btn-social {
-            background: var(--glass); border: 1px solid var(--border);
-            color: white; padding: 12px 22px; border-radius: 12px;
-            text-decoration: none; font-size: 14px; transition: 0.3s;
-            display: flex; align-items: center; justify-content: center;
+            background: var(--glass); border: 1px solid var(--border); color: white; padding: 12px 22px; 
+            border-radius: 12px; text-decoration: none; font-size: 14px; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
         }
         .btn-social:hover { transform: translateY(-3px); background: #fff; color: #000; }
-        .btn-yt:hover { background: var(--accent-yt); color: white; box-shadow: 0 5px 20px rgba(255,0,0,0.4); }
-        .btn-tw:hover { background: var(--accent-tw); color: white; box-shadow: 0 5px 20px rgba(145,70,255,0.4); }
-        .btn-tt:hover { background: var(--accent-tt); color: black; box-shadow: 0 5px 20px rgba(0,242,254,0.4); }
-        .btn-ig:hover { background: var(--accent-ig); color: white; box-shadow: 0 5px 20px rgba(193,53,132,0.4); }
 
         /* =========================================
-           4. SEKCJE
+           SEKCJE & KARTY
            ========================================= */
         section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; opacity: 0; transform: translateY(30px); transition: 1s; position: relative; z-index: 1;}
         section.visible { opacity: 1; transform: translateY(0); }
-        h2 { font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; text-align: center; color: #666; }
-        .glass-card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 20px; }
+        h2 { font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 50px; text-align: center; color: #666; }
+
         .grid-experience { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .exp-card { background: linear-gradient(145deg, rgba(255,255,255,0.02), transparent); border: 1px solid var(--border); padding: 30px; border-radius: 20px; transition: 0.3s; }
-        .exp-card:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); }
+        .exp-card { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 20px; transition: 0.3s; text-align: center; }
+        .exp-card:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
 
         .shorts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-        .short-item { aspect-ratio: 9/16; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); background: #000; transition: 0.4s; }
-        .short-item:hover { transform: translateY(-10px); border-color: var(--glow); }
+        .short-item { aspect-ratio: 9/16; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); background: #000; }
         .short-item iframe { width: 100%; height: 100%; border: none; }
 
-        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .discord-box { background: linear-gradient(145deg, #12131c, #050505); border: 1px solid rgba(88, 101, 242, 0.3); padding: 40px; border-radius: 20px; text-align: center; }
-        .dc-icon { font-size: 3rem; color: var(--accent-dc); margin-bottom: 15px; }
-        .form-container { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 20px; }
-        input, textarea { width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border); padding: 15px; margin-bottom: 15px; color: white; border-radius: 12px; font-family: inherit; }
-        .submit-btn { width: 100%; padding: 15px; background: white; color: black; border: none; border-radius: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        /* =========================================
+           MODAL KONTAKTOWY (LIQUID GLASS STYLE)
+           ========================================= */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(15px);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: 0.4s;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-content {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 40px; border-radius: 30px; width: 90%; max-width: 500px;
+            transform: scale(0.9); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .close-modal { position: absolute; top: 20px; right: 20px; color: #666; cursor: pointer; font-size: 1.5rem; transition: 0.3s; }
+        .close-modal:hover { color: white; }
+
+        input, textarea { 
+            width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border); 
+            padding: 15px; margin-bottom: 15px; color: white; border-radius: 12px; font-family: inherit; box-sizing: border-box;
+        }
+        input:focus { border-color: rgba(255,255,255,0.5); outline: none; }
+        .submit-btn { width: 100%; padding: 18px; background: white; color: black; border: none; border-radius: 12px; font-weight: 900; text-transform: uppercase; cursor: pointer; }
 
         @media (max-width: 768px) {
             .top-nav { padding: 15px 20px 20px 20px; gap: 15px; }
-            .hero-stats { flex-direction: column; gap: 15px; }
-            .contact-wrapper { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -191,15 +146,14 @@
     <svg style="position: absolute; width: 0; height: 0; visibility: hidden;">
         <defs>
             <filter id="liquid-goo">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" result="goo" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -12" result="goo" />
                 <feComposite in="SourceGraphic" in2="goo" operator="atop" />
             </filter>
         </defs>
     </svg>
 
-    <div class="liquid-container">
-        </div>
+    <div class="liquid-container" id="liquid-wrap"></div>
 
     <canvas id="pixel-canvas"></canvas>
     <div class="ambient-bg"></div>
@@ -214,51 +168,39 @@
     <header class="hero">
         <div class="avatar-box">
             <img src="profil.jpg" alt="Karmelo" class="profile-img">
-            <div class="status-dot">ONLINE</div>
         </div>
         <h1>SIEMA, TU <span>KARMELO</span></h1>
         
         <div class="hero-stats">
             <div class="stat-item"><b>2025</b><span>Global Ad</span></div>
-            <div class="stat-item"><b>100%</b><span>Pasji</span></div>
-            <div class="stat-item"><b>PRO</b><span>Montaż</span></div>
+            <div class="stat-item"><b>PRO</b><span>Editor</span></div>
+            <div class="stat-item"><b>ROM</b><span>Aktor</span></div>
         </div>
 
-        <div class="socials">
-            <a href="https://youtube.com/@kvrmelo" target="_blank" class="btn-social btn-yt"><i class="fab fa-youtube"></i></a>
-            <a href="https://tiktok.com/@kvrmelo" target="_blank" class="btn-social btn-tt"><i class="fab fa-tiktok"></i></a>
-            <a href="https://instagram.com/kvrmelo" target="_blank" class="btn-social btn-ig"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitch.tv/kvrmelo" target="_blank" class="btn-social btn-tw"><i class="fab fa-twitch"></i></a>
+        <div style="display: flex; gap: 10px;">
+            <a href="https://youtube.com/@kvrmelo" target="_blank" class="btn-social"><i class="fab fa-youtube"></i></a>
+            <a href="https://tiktok.com/@kvrmelo" target="_blank" class="btn-social"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="btn-social" id="open-contact">WSPÓŁPRACA</a>
         </div>
     </header>
 
-    <section id="about">
-        <h2>O mnie</h2>
-        <div class="glass-card">
-            <p style="font-size: 1.1rem; text-align: center; color: #aaa;">
-                Nazywam się <strong style="color: white;">Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. 
-                Łączę warsztat aktorski z nowoczesnym montażem.
-            </p>
-        </div>
-    </section>
-
     <section id="experience">
-        <h2>Doświadczenie</h2>
+        <h2>Portfolio / Doświadczenie</h2>
         <div class="grid-experience">
             <div class="exp-card">
-                <i class="fas fa-ad" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
+                <i class="fas fa-ad" style="margin-bottom:15px; color:#aaa; font-size: 1.5rem;"></i>
                 <h3>Sodastream</h3>
-                <p style="color:#888; font-size: 14px;">Globalna reklama (2025)</p>
+                <p style="color:#666; font-size: 14px;">Reklama Globalna 2025</p>
             </div>
             <div class="exp-card">
-                <i class="fas fa-tv" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
-                <h3>Tatuśkowie</h3>
-                <p style="color:#888; font-size: 14px;">Serial Polsat</p>
+                <i class="fas fa-video" style="margin-bottom:15px; color:#aaa; font-size: 1.5rem;"></i>
+                <h3>Montaż Wideo</h3>
+                <p style="color:#666; font-size: 14px;">Short-form specialist</p>
             </div>
             <div class="exp-card">
-                <i class="fas fa-masks-theater" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
-                <h3>Teatr Roma</h3>
-                <p style="color:#888; font-size: 14px;">Spektakle muzyczne</p>
+                <i class="fas fa-masks-theater" style="margin-bottom:15px; color:#aaa; font-size: 1.5rem;"></i>
+                <h3>Teatr Muzyczny</h3>
+                <p style="color:#666; font-size: 14px;">Aktor / Wokalista</p>
             </div>
         </div>
     </section>
@@ -272,47 +214,45 @@
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Współpraca</h2>
-        <div class="contact-wrapper">
-            <div class="discord-box">
-                <div class="dc-icon"><i class="fab fa-discord"></i></div>
-                <h3>Dołącz do Discorda</h3>
-                <code style="background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; margin-bottom: 25px; color: var(--accent-dc); display: block;">kvrmelo</code>
-                <a href="#" id="copy-dc" class="btn-social">Kopiuj Nick</a>
-            </div>
-            <div class="form-container">
-                <form action="https://formspree.io/f/xqeyzypj" method="POST" target="_blank">
-                    <input type="email" name="email" placeholder="Twój Adres E-mail" required>
-                    <textarea name="message" rows="5" placeholder="Opisz swój projekt..." required></textarea>
-                    <button type="submit" class="submit-btn">Wyślij Wiadomość</button>
-                </form>
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-content">
+            <i class="fas fa-times close-modal" id="close-modal"></i>
+            <h2 style="margin-top: 0; color: white; letter-spacing: 2px;">POWIEDZ SIEMA</h2>
+            <form action="https://formspree.io/f/xqeyzypj" method="POST">
+                <input type="email" name="email" placeholder="Twój E-mail" required>
+                <textarea name="message" rows="5" placeholder="W czym mogę pomóc?" required></textarea>
+                <button type="submit" class="submit-btn">Wyślij projekt</button>
+            </form>
+            <div style="margin-top: 25px; text-align: center; border-top: 1px solid var(--border); padding-top: 20px;">
+                <p style="font-size: 10px; color: #666; margin-bottom: 10px;">LUB DODAJ NA DISCORDZIE</p>
+                <code style="color: var(--accent-dc); font-size: 1.2rem;">kvrmelo</code>
             </div>
         </div>
-    </section>
+    </div>
 
-    <footer style="padding: 40px; text-align: center; color: #444; font-size: 11px; letter-spacing: 2px;">
-        © 2026 KARMELO | Wszelkie prawa zastrzeżone
+    <footer style="padding: 60px; text-align: center; color: #333; font-size: 10px; letter-spacing: 3px;">
+        © 2026 KARMELO | ALL RIGHTS RESERVED
     </footer>
 
     <script>
-        /* 1. SKRYPT CIECZY (PODĄŻANIE ZA KURSOREM/PALCEM) */
-        const container = document.querySelector('.liquid-container');
+        /* 1. LIQUID GLASS PHYSICS (WITH STRETCH) */
+        const wrap = document.getElementById('liquid-wrap');
         const numBlobs = 6;
         const blobs = [];
         let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        let lastMouse = { x: mouse.x, y: mouse.y };
 
         for(let i = 0; i < numBlobs; i++) {
             const el = document.createElement('div');
             el.className = 'liquid-blob';
-            container.appendChild(el);
-            const size = i === 0 ? 45 : 40 - (i * 5);
+            wrap.appendChild(el);
+            const size = i === 0 ? 55 : 50 - (i * 6);
             blobs.push({
                 el: el, x: mouse.x, y: mouse.y, size: size,
-                speed: i === 0 ? 0.22 : 0.18 - (i * 0.02)
+                vx: 0, vy: 0,
+                speed: i === 0 ? 0.25 : 0.22 - (i * 0.02)
             });
-            el.style.width = size + 'px';
-            el.style.height = size + 'px';
+            el.style.width = size + 'px'; el.style.height = size + 'px';
         }
 
         window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
@@ -320,17 +260,41 @@
 
         function animateLiquid() {
             let tx = mouse.x; let ty = mouse.y;
+            
+            // Obliczanie prędkości myszy dla efektu rozciągania
+            let dx = mouse.x - lastMouse.x;
+            let dy = mouse.y - lastMouse.y;
+            let vel = Math.sqrt(dx*dx + dy*dy);
+            let angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
             blobs.forEach((b, i) => {
                 if(i > 0) { tx = blobs[i-1].x; ty = blobs[i-1].y; }
+                
                 b.x += (tx - b.x) * b.speed;
                 b.y += (ty - b.y) * b.speed;
-                b.el.style.transform = `translate(${b.x - b.size/2}px, ${b.y - b.size/2}px)`;
+                
+                // Stretch effect based on velocity
+                let s = i === 0 ? 1 + (vel / 100) : 1; 
+                let stretch = `rotate(${angle}deg) scale(${s}, ${1 / (s * 0.8 + 0.2)})`;
+                
+                b.el.style.transform = `translate(${b.x - b.size/2}px, ${b.y - b.size/2}px) ${stretch}`;
             });
+
+            lastMouse.x = mouse.x; lastMouse.y = mouse.y;
             requestAnimationFrame(animateLiquid);
         }
         animateLiquid();
 
-        /* 2. PIKSELE W TLE */
+        /* 2. MODAL LOGIC */
+        const modal = document.getElementById('contact-modal');
+        const openBtn = document.getElementById('open-contact');
+        const closeBtn = document.getElementById('close-modal');
+
+        openBtn.onclick = (e) => { e.preventDefault(); modal.classList.add('active'); }
+        closeBtn.onclick = () => { modal.classList.remove('active'); }
+        window.onclick = (e) => { if(e.target == modal) modal.classList.remove('active'); }
+
+        /* 3. PIXELS & OBSERVER */
         const canvas = document.getElementById('pixel-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -338,39 +302,22 @@
         class Pixel {
             constructor() { this.reset(); }
             reset() {
-                this.size = 4;
-                this.x = Math.floor(Math.random() * canvas.width / this.size) * this.size;
+                this.size = 3;
+                this.x = Math.floor(Math.random() * canvas.width);
                 this.y = Math.random() * -canvas.height;
-                this.speed = 0.5 + Math.random() * 1.5;
-                this.opacity = 0.05 + Math.random() * 0.2;
+                this.speed = 0.5 + Math.random();
+                this.opacity = 0.05 + Math.random() * 0.1;
             }
             update() { this.y += this.speed; if (this.y > canvas.height) this.reset(); }
             draw() { ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; ctx.fillRect(this.x, this.y, this.size, this.size); }
         }
-        for (let i = 0; i < 50; i++) pixels.push(new Pixel());
-        function animatePixels() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            pixels.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animatePixels);
-        }
-        animatePixels();
+        for (let i = 0; i < 40; i++) pixels.push(new Pixel());
+        function anim() { ctx.clearRect(0,0,canvas.width,canvas.height); pixels.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(anim); }
+        anim();
 
-        /* 3. POJAWIANIE SIĘ SEKCJI */
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('section').forEach(s => observer.observe(s));
-
-        /* 4. KOPIOWANIE DISCORDA */
-        document.getElementById('copy-dc').addEventListener('click', function(e) {
-            e.preventDefault();
-            navigator.clipboard.writeText('kvrmelo').then(() => {
-                this.innerText = 'SKOPIOWANO!';
-                setTimeout(() => { this.innerText = 'KOPIUJ NICK'; }, 2000);
-            });
-        });
-
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        const obs = new IntersectionObserver(es => es.forEach(e => {if(e.isIntersecting) e.target.classList.add('visible')}), {threshold:0.1});
+        document.querySelectorAll('section').forEach(s => obs.observe(s));
+        window.onresize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
     </script>
 </body>
 </html>
