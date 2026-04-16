@@ -9,11 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
+        /* =========================================
+           1. ZMIENNE I FUNDAMENTY
+           ========================================= */
         :root {
             --bg: #030303;
             --glass: rgba(255, 255, 255, 0.02);
             --border: rgba(255, 255, 255, 0.08);
             --glow: rgba(255, 255, 255, 0.4);
+            
             --accent-yt: #ff0000;
             --accent-tw: #9146ff;
             --accent-tt: #00f2fe; 
@@ -21,45 +25,54 @@
             --accent-dc: #5865F2; 
         }
 
-        /* CAŁKOWITE UKRYCIE SYSTEMOWEGO PASKA */
+        /* UKRYWAMY CAŁKOWICIE STANDARDOWY SUWAK SYSTEMOWY */
         ::-webkit-scrollbar { width: 0px; display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; overflow-y: scroll; }
 
-        /* KONTENER DLA PŁYNNEGO SUWAKA */
+        /* PŁYNNY SUWAK RTĘCI - CSS */
         .liquid-container {
             position: fixed;
-            right: 8px;
+            right: 5px;
             top: 0;
             width: 20px;
             height: 100vh;
-            z-index: 10000;
+            z-index: 9999;
             pointer-events: none;
-            filter: url('#liquid-goo'); /* To nakłada efekt cieczy */
+            filter: url('#liquid-goo');
         }
 
         .liquid-thumb {
             position: absolute;
-            width: 12px;
-            min-height: 12px;
+            width: 10px;
+            min-height: 10px;
             background: #fff;
-            border-radius: 50%; /* Startuje jako kropka/koło */
-            right: 4px;
+            border-radius: 50%;
+            right: 5px;
             pointer-events: auto;
             cursor: grab;
-            box-shadow: 0 0 20px rgba(255,255,255,0.6);
+            box-shadow: 0 0 15px rgba(255,255,255,0.8);
             transition: width 0.3s, background 0.3s, box-shadow 0.3s;
-            will-change: transform, height;
+            will-change: transform, height, width;
+            transform-origin: center;
         }
 
         .liquid-thumb:hover {
-            width: 18px;
-            box-shadow: 0 0 30px rgba(255,255,255,1);
+            width: 16px;
             background: #f0f0f0;
+            box-shadow: 0 0 25px rgba(255,255,255,1);
         }
 
-        /* Fundamenty strony */
+        .liquid-thumb:active { cursor: grabbing; }
+
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
+        
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
         .ambient-bg {
             position: fixed;
@@ -69,48 +82,434 @@
             z-index: -1;
         }
 
-        #pixel-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        /* STYLE DLA DESZCZU PIKSELI */
+        #pixel-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-        /* NAWIGACJA */
+        /* =========================================
+           2. NAWIGACJA (EFEKT ŚWIATŁA)
+           ========================================= */
         .top-nav {
-            position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
             background: radial-gradient(ellipse at top, rgba(255,255,255,0.15) 0%, transparent 70%);
             border-top: 1px solid rgba(255,255,255,0.2);
-            padding: 20px 50px 30px 50px; z-index: 1000; display: flex; gap: 35px;
-            width: 100%; max-width: 600px; justify-content: center;
+            padding: 20px 50px 30px 50px;
+            z-index: 1000;
+            display: flex; gap: 35px;
+            width: 100%;
+            max-width: 600px;
+            justify-content: center;
         }
-        .top-nav a { color: #888; text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: 3px; transition: 0.3s; text-transform: uppercase; }
-        .top-nav a:hover { color: white; text-shadow: 0 0 15px rgba(255,255,255,0.8); }
 
-        /* HERO */
-        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; position: relative; z-index: 1; }
-        .avatar-box { position: relative; width: 140px; height: 140px; margin-bottom: 25px; animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .profile-img { width: 100%; height: 100%; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 0 40px rgba(255,255,255,0.1); object-fit: cover; }
-        .status-dot { position: absolute; bottom: 8px; right: 8px; background: #00ff00; color: black; font-size: 8px; font-weight: 900; padding: 3px 8px; border-radius: 20px; box-shadow: 0 0 15px #00ff00; }
-        h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1px; text-transform: uppercase; color: #ccc; }
-        h1 span { font-size: clamp(2.5rem, 7vw, 4.5rem); background: linear-gradient(to right, #ffffff, #888888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
+        .top-nav a {
+            color: #888; text-decoration: none; font-size: 11px;
+            font-weight: 500; letter-spacing: 3px; transition: 0.3s;
+            text-transform: uppercase;
+        }
 
-        .hero-stats { display: flex; gap: 40px; margin: 30px 0; background: var(--glass); padding: 20px 40px; border-radius: 20px; border: 1px solid var(--border); }
+        .top-nav a:hover { 
+            color: white; 
+            text-shadow: 0 0 15px rgba(255,255,255,0.8); 
+        }
+
+        /* =========================================
+           3. HERO SECTION
+           ========================================= */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; padding: 20px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar-box {
+            position: relative;
+            width: 140px; height: 140px;
+            margin-bottom: 25px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .profile-img {
+            width: 100%; height: 100%;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 40px rgba(255,255,255,0.1);
+            object-fit: cover;
+        }
+
+        .status-dot {
+            position: absolute; bottom: 8px; right: 8px;
+            background: #00ff00; color: black;
+            font-size: 8px; font-weight: 900;
+            padding: 3px 8px; border-radius: 20px;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        h1 { 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-weight: 800; 
+            letter-spacing: -1px; 
+            line-height: 1.2; 
+            text-transform: uppercase;
+            color: #ccc;
+        }
+        h1 span { 
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            background: linear-gradient(to right, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255,255,255,0.15); 
+            display: block;
+        }
+
+        .hero-stats {
+            display: flex; gap: 40px; margin: 30px 0;
+            background: var(--glass);
+            padding: 20px 40px; border-radius: 20px;
+            border: 1px solid var(--border);
+        }
         .stat-item b { font-size: 1.4rem; display: block; color: #fff;}
         .stat-item span { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; }
 
-        .socials { display: flex; gap: 12px; justify-content: center; }
-        .btn-social { background: var(--glass); border: 1px solid var(--border); color: white; padding: 12px 22px; border-radius: 12px; text-decoration: none; transition: 0.3s; }
-        .btn-social:hover { transform: translateY(-3px); background: #fff; color: #000; }
-        .btn-yt:hover { background: var(--accent-yt); color: #fff; }
+        /* =========================================
+           4. PRZYCISKI (SOCIALS)
+           ========================================= */
+        .socials { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn-social {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: white; padding: 12px 22px;
+            border-radius: 12px; text-decoration: none;
+            font-size: 14px; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
 
-        /* SEKCJE */
+        .btn-social:hover { transform: translateY(-3px); background: #fff; color: #000; }
+
+        .btn-yt:hover { background: var(--accent-yt); color: white; border-color: var(--accent-yt); box-shadow: 0 5px 20px rgba(255,0,0,0.4); }
+        .btn-tw:hover { background: var(--accent-tw); color: white; border-color: var(--accent-tw); box-shadow: 0 5px 20px rgba(145,70,255,0.4); }
+        .btn-tt:hover { background: var(--accent-tt); color: black; border-color: var(--accent-tt); box-shadow: 0 5px 20px rgba(0,242,254,0.4); }
+        .btn-ig:hover { background: var(--accent-ig); color: white; border-color: var(--accent-ig); box-shadow: 0 5px 20px rgba(193,53,132,0.4); }
+
+        /* =========================================
+           5. RESZTA STRONY
+           ========================================= */
         section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; opacity: 0; transform: translateY(30px); transition: 1s; position: relative; z-index: 1;}
         section.visible { opacity: 1; transform: translateY(0); }
+
         h2 { font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; text-align: center; color: #666; }
+
         .glass-card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 20px; }
 
         .grid-experience { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .exp-card { background: linear-gradient(145deg, rgba(255,255,255,0.02), transparent); border: 1px solid var(--border); padding: 30px; border-radius: 20px; transition: 0.3s; }
+        .exp-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.02), transparent);
+            border: 1px solid var(--border);
+            padding: 30px; border-radius: 20px; transition: 0.3s;
+        }
+        .exp-card:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); }
 
         .shorts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-        .short-item { aspect-ratio
+        .short-item {
+            aspect-ratio: 9/16; border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border); background: #000; transition: 0.4s;
+        }
+        .short-item:hover { transform: translateY(-10px); border-color: var(--glow); box-shadow: 0 15px 30px rgba(0,0,0,0.8); }
+        .short-item iframe { width: 100%; height: 100%; border: none; }
+
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .discord-box {
+            background: linear-gradient(145deg, #12131c, #050505);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            padding: 40px; border-radius: 20px; text-align: center;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .dc-icon { font-size: 3rem; color: var(--accent-dc); margin-bottom: 15px; text-shadow: 0 0 20px rgba(88, 101, 242, 0.5); }
+        
+        .form-container { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 20px; }
+        input, textarea {
+            width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border);
+            padding: 15px; margin-bottom: 15px; color: white; border-radius: 12px;
+            font-family: inherit; transition: 0.3s;
+        }
+        input:focus, textarea:focus { outline: none; border-color: white; background: rgba(255,255,255,0.05); }
+        .submit-btn {
+            width: 100%; padding: 15px; background: white; color: black;
+            border: none; border-radius: 12px; font-weight: 800; 
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
+        }
+        .submit-btn:hover { background: #ddd; transform: translateY(-2px); }
+
+        @media (max-width: 768px) {
+            .top-nav { padding: 15px 20px 20px 20px; gap: 15px; }
+            .top-nav a { font-size: 9px; letter-spacing: 1px; }
+            .hero { padding-top: 80px; }
+            .avatar-box { width: 110px; height: 110px; }
+            .hero-stats { flex-direction: column; gap: 15px; padding: 20px 30px; width: 90%; max-width: 300px; }
+            .stat-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+            .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .stat-item b { font-size: 1.2rem; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .shorts-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <svg style="position: absolute; width: 0; height: 0; visibility: hidden;">
+        <defs>
+            <filter id="liquid-goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="liquid-container">
+        <div id="liquid-thumb" class="liquid-thumb"></div>
+    </div>
+
+    <canvas id="pixel-canvas"></canvas>
+    <div class="ambient-bg"></div>
+
+    <nav class="top-nav">
+        <a href="#about">O MNIE</a>
+        <a href="#experience">PORTFOLIO</a>
+        <a href="#shorts">SHORTS</a>
+        <a href="#contact">KONTAKT</a>
+    </nav>
+
+    <header class="hero">
+        <div class="avatar-box">
+            <img src="profil.jpg" alt="Karmelo" class="profile-img">
+            <div class="status-dot">ONLINE</div>
+        </div>
+        <h1>SIEMA, TU <span>KARMELO</span></h1>
+        
+        <div class="hero-stats">
+            <div class="stat-item"><b>2025</b><span>Global Ad</span></div>
+            <div class="stat-item"><b>100%</b><span>Pasji</span></div>
+            <div class="stat-item"><b>PRO</b><span>Montaż</span></div>
+        </div>
+
+        <div class="socials">
+            <a href="https://youtube.com/@kvrmelo" target="_blank" class="btn-social btn-yt"><i class="fab fa-youtube"></i></a>
+            <a href="https://tiktok.com/@kvrmelo" target="_blank" class="btn-social btn-tt"><i class="fab fa-tiktok"></i></a>
+            <a href="https://instagram.com/kvrmelo" target="_blank" class="btn-social btn-ig"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitch.tv/kvrmelo" target="_blank" class="btn-social btn-tw"><i class="fab fa-twitch"></i></a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>O mnie</h2>
+        <div class="glass-card">
+            <p style="font-size: 1.1rem; text-align: center; color: #aaa;">
+                Nazywam się <strong style="color: white;">Kornel Weroński</strong>. Jestem kreatywnym twórcą treści wideo i aktorem młodego pokolenia. 
+                Łączę warsztat aktorski z nowoczesnym montażem.
+            </p>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Doświadczenie</h2>
+        <div class="grid-experience">
+            <div class="exp-card">
+                <i class="fas fa-ad" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
+                <h3 style="margin-bottom: 5px;">Sodastream</h3>
+                <p style="color:#888; font-size: 14px;">Globalna reklama (2025)</p>
+            </div>
+            <div class="exp-card">
+                <i class="fas fa-tv" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
+                <h3 style="margin-bottom: 5px;">Tatuśkowie</h3>
+                <p style="color:#888; font-size: 14px;">Serial Polsat</p>
+            </div>
+            <div class="exp-card">
+                <i class="fas fa-masks-theater" style="margin-bottom:15px; color:#666; font-size: 1.5rem;"></i>
+                <h3 style="margin-bottom: 5px;">Teatr Roma</h3>
+                <p style="color:#888; font-size: 14px;">Spektakle muzyczne</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="shorts">
+        <h2>Najnowsze Shortsy</h2>
+        <div class="shorts-grid">
+            <div class="short-item"><iframe src="https://www.youtube.com/embed/XQrDdlafN00"></iframe></div>
+            <div class="short-item"><iframe src="https://www.youtube.com/embed/XQrDdlafN00"></iframe></div>
+            <div class="short-item"><iframe src="https://www.youtube.com/embed/XQrDdlafN00"></iframe></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Współpraca</h2>
+        <div class="contact-wrapper">
+            <div class="discord-box">
+                <div class="dc-icon"><i class="fab fa-discord"></i></div>
+                <h3 style="margin-bottom: 10px;">Dołącz do Discorda</h3>
+                <code style="background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; margin-bottom: 25px; color: var(--accent-dc); font-size: 1.1rem;">kvrmelo</code>
+                <a href="#" id="copy-dc" class="btn-social" style="width: 80%; margin: 0 auto;">Kopiuj Nick</a>
+            </div>
+
+            <div class="form-container">
+                <form action="https://formspree.io/f/xqeyzypj" method="POST" target="_blank">
+                    <input type="email" name="email" placeholder="Twój Adres E-mail" required>
+                    <textarea name="message" rows="5" placeholder="Opisz swój projekt..." required></textarea>
+                    <button type="submit" class="submit-btn">Wyślij Wiadomość</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 40px; text-align: center; color: #444; font-size: 11px; letter-spacing: 2px; position: relative; z-index: 1;">
+        © 2026 KARMELO | Wszelkie prawa zastrzeżone
+    </footer>
+
+    <script>
+        /* =========================================
+           SKRYPT 1: PŁYNNY SUWAK (RTĘĆ)
+           ========================================= */
+        const thumb = document.getElementById('liquid-thumb');
+        let lastPos = window.pageYOffset;
+        let velocity = 0;
+
+        function updateLiquid() {
+            const currentPos = window.pageYOffset;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            // Obliczamy pozycję od 0 do 1
+            const scrollPercent = scrollHeight > 0 ? (currentPos / scrollHeight) * (window.innerHeight - 50) : 0;
+            
+            // Pęd suwaka
+            velocity = currentPos - lastPos;
+            lastPos = currentPos;
+
+            // Efekt rozciągania i chudnięcia przy prędkości
+            const stretch = Math.min(Math.abs(velocity) * 1.5, 120); 
+            const dynamicHeight = 30 + stretch;
+            const dynamicWidth = Math.max(10 - (stretch / 20), 4); 
+
+            thumb.style.height = `${dynamicHeight}px`;
+            thumb.style.width = `${dynamicWidth}px`;
+            
+            // Korekta pozycji, żeby rozciągał się "w dół" przy locie w dół itp.
+            const yOffset = velocity > 0 ? -stretch / 2 : 0;
+            thumb.style.transform = `translateY(${scrollPercent + yOffset}px)`;
+
+            // Wygaszanie pędu
+            velocity *= 0.85;
+            
+            requestAnimationFrame(updateLiquid);
+        }
+        updateLiquid();
+
+        // Obsługa chwytania suwaka myszką
+        let isDragging = false;
+        thumb.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const pct = e.clientY / window.innerHeight;
+            window.scrollTo(0, (document.documentElement.scrollHeight - window.innerHeight) * pct);
+        });
+
+
+        /* =========================================
+           SKRYPT 2: POWOLNE KWADRATOWE PIKSELE
+           ========================================= */
+        const canvas = document.getElementById('pixel-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const pixels = [];
+        const pixelCount = 60; // Zmniejszona liczba dla estetyki
+
+        class Pixel {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.size = 4; // Kwadraty o boku 4px
+                this.x = Math.floor(Math.random() * canvas.width / this.size) * this.size; // Wyrównanie do siatki
+                this.y = Math.random() * -canvas.height;
+                this.speed = 0.5 + Math.random() * 1.5; // Bardzo powolne opadanie
+                this.opacity = 0.05 + Math.random() * 0.3;
+            }
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        for (let i = 0; i < pixelCount; i++) pixels.push(new Pixel());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            pixels.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        /* =========================================
+           SKRYPT 3: OBSERVER (POJAWIANIE SIĘ SEKCJI)
+           ========================================= */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        /* =========================================
+           SKRYPT 4: KOPIOWANIE DISCORDA
+           ========================================= */
+        document.getElementById('copy-dc').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigator.clipboard.writeText('kvrmelo').then(() => {
+                const btn = this;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'Skopiowano!';
+                btn.style.background = 'white';
+                btn.style.color = 'black';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = 'var(--glass)';
+                    btn.style.color = 'white';
+                }, 2000);
+            });
+        });
     </script>
 
 </body>
